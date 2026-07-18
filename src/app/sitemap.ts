@@ -2,7 +2,7 @@ import type { MetadataRoute } from 'next'
 import { PROJECTS } from '@/lib/constants'
 import { BLOG_POSTS } from '@/lib/blog'
 
-const BASE = 'https://bcim.in'
+const BASE = 'https://site.bcim.in'
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const staticRoutes: MetadataRoute.Sitemap = [

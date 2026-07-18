@@ -30,7 +30,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'en_IN',
-    url: 'https://bcim.in',
+    url: 'https://site.bcim.in',
     siteName: 'BCIM Engineering Private Limited',
     title: 'BCIM Engineering — Premium Commercial & Residential Construction',
     description:
@@ -43,7 +43,7 @@ export const metadata: Metadata = {
     description: 'ISO-certified construction company delivering premium projects since 2018.',
   },
   robots: { index: true, follow: true },
-  metadataBase: new URL('https://bcim.in'),
+  metadataBase: new URL('https://site.bcim.in'),
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

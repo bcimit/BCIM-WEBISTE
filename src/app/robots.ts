@@ -9,7 +9,7 @@ export default function robots(): MetadataRoute.Robots {
         disallow: ['/admin', '/admin/', '/api/'],
       },
     ],
-    sitemap: 'https://bcim.in/sitemap.xml',
-    host: 'https://bcim.in',
+    sitemap: 'https://site.bcim.in/sitemap.xml',
+    host: 'https://site.bcim.in',
   }
 }
