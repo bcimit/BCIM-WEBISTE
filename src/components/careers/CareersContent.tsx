@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useRef } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import {
   Briefcase, ArrowRight, CheckCircle2, Users, Building2, Trophy, Star,
@@ -54,7 +54,7 @@ function ApplicationForm({ prefilledDept = '', prefilledJobId = '' }: { prefille
     fd.append('email', form.email.trim())
     fd.append('phone', form.phone.trim())
     fd.append('experience_years', form.experience || '0')
-    fd.append('current_company', form.department)
+    fd.append('department', form.department)
     fd.append('note', form.note)
     if (prefilledJobId) fd.append('job_id', prefilledJobId)
     if (resume) fd.append('resume', resume)
@@ -142,7 +142,17 @@ function ApplicationForm({ prefilledDept = '', prefilledJobId = '' }: { prefille
           )}
         </div>
         <input ref={fileRef} type="file" accept=".pdf,.doc,.docx" className="hidden"
-          onChange={e => setResume(e.target.files?.[0] ?? null)} />
+          onChange={e => {
+            const file = e.target.files?.[0] ?? null
+            if (file && file.size > 5 * 1024 * 1024) {
+              setErrorMsg('Resume exceeds 5 MB. Please compress the file and re-upload.')
+              setStatus('error')
+              if (fileRef.current) fileRef.current.value = ''
+              return
+            }
+            setResume(file)
+            if (status === 'error') { setStatus('idle'); setErrorMsg('') }
+          }} />
       </div>
 
       {status === 'error' && (
@@ -234,13 +244,15 @@ export function CareersContent({ jobs }: { jobs: ERPJob[] }) {
   const [applyJobId, setApplyJobId] = useState('')
   const [showForm, setShowForm] = useState(false)
 
+  useEffect(() => {
+    if (!applyDept) return
+    document.getElementById('apply-form')?.scrollIntoView({ behavior: 'smooth', block: 'center' })
+  }, [applyDept])
+
   function handleApply(title: string, id = '') {
     setApplyDept(title)
     setApplyJobId(id)
     setShowForm(true)
-    setTimeout(() => {
-      document.getElementById('apply-form')?.scrollIntoView({ behavior: 'smooth', block: 'center' })
-    }, 100)
   }
 
   return (

@@ -152,7 +152,7 @@ export function Hero() {
             {/* Trust badges */}
             <div data-hero-item className="flex flex-wrap items-center gap-5 mt-12">
               {[
-                { label: '5+ Projects', sub: 'Completed' },
+                { label: '7+ Projects', sub: 'Completed' },
                 { label: `${new Date().getFullYear() - COMPANY.founded}+ Years`, sub: 'Experience' },
                 { label: '3', sub: 'ISO Certifications' },
               ].map(({ label, sub }) => (

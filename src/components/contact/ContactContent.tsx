@@ -50,8 +50,8 @@ export function ContactContent() {
           {submitted ? (
             <div className="flex flex-col items-center justify-center text-center py-20 bg-white rounded-2xl border border-navy-100 shadow-[var(--shadow-card)]">
               <CheckCircle2 size={48} className="text-emerald-500 mb-5" />
-              <h2 className="text-2xl font-bold text-dark mb-3">Message Sent!</h2>
-              <p className="text-navy-500 max-w-sm">Your email client should have opened. We typically respond promptly.</p>
+              <h2 className="text-2xl font-bold text-dark mb-3">Email Client Opened</h2>
+              <p className="text-navy-500 max-w-sm">Your email client should have opened with your message pre-filled. Hit Send there to reach us — we typically respond within one business day.</p>
               <button onClick={() => setSubmitted(false)} className="mt-8 btn-outline-dark text-sm">Send Another Message</button>
             </div>
           ) : (

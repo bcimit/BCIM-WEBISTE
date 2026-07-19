@@ -10,6 +10,11 @@ export function CustomCursor() {
   const [visible, setVisible] = useState(false)
 
   useEffect(() => {
+    document.documentElement.classList.add('custom-cursor-active')
+    return () => document.documentElement.classList.remove('custom-cursor-active')
+  }, [])
+
+  useEffect(() => {
     let ringX = 0, ringY = 0
     let targetX = 0, targetY = 0
     let rafId: number

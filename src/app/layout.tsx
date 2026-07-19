@@ -44,7 +44,7 @@ export const metadata: Metadata = {
     description: 'ISO-certified construction company delivering premium projects since 2018.',
   },
   robots: { index: true, follow: true },
-  metadataBase: new URL('https://site.bcim.in'),
+  metadataBase: new URL('https://bcim.in'),
 }
 
 const LD_JSON = {
@@ -188,7 +188,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           dangerouslySetInnerHTML={{ __html: JSON.stringify(LD_JSON) }}
         />
       </head>
-      <body className="font-sans antialiased bg-white text-navy-900 cursor-none">
+      <body className="font-sans antialiased bg-white text-navy-900">
         <LenisProvider>
           <CustomCursor />
           <Navbar />

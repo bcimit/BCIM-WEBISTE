@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { X, ZoomIn, MapPin } from 'lucide-react'
 import { resolveImage } from '@/lib/utils'
@@ -116,6 +116,7 @@ const STATUS_STYLES: Record<string, string> = {
   'EHS & Safety':   'bg-red-50    text-red-700    border-red-200',
   'Site Operations':'bg-violet-50 text-violet-700 border-violet-200',
 }
+const STATUS_STYLE_FALLBACK = 'bg-navy-100 text-navy-700 border-navy-200'
 
 const DEPT_FILTERS = ['All Projects', 'Commercial Construction', 'Residential Construction', 'Plant & Machinery', 'Health, Safety & Environment']
 
@@ -124,6 +125,23 @@ type LightboxItem = GalleryImage & { groupName: string }
 export function GalleryGrid() {
   const [activeDept, setActiveDept] = useState('All Projects')
   const [lightbox, setLightbox] = useState<LightboxItem | null>(null)
+  const closeBtnRef = useRef<HTMLButtonElement>(null)
+
+  // Focus close button when lightbox opens; restore focus when it closes
+  useEffect(() => {
+    if (lightbox) {
+      closeBtnRef.current?.focus()
+    }
+  }, [lightbox])
+
+  // Close on Escape
+  useEffect(() => {
+    function onKey(e: KeyboardEvent) {
+      if (e.key === 'Escape') setLightbox(null)
+    }
+    if (lightbox) window.addEventListener('keydown', onKey)
+    return () => window.removeEventListener('keydown', onKey)
+  }, [lightbox])
 
   const visibleGroups = activeDept === 'All Projects'
     ? PROJECT_GROUPS
@@ -161,7 +179,7 @@ export function GalleryGrid() {
               <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-3 mb-6 pb-4 border-b border-navy-100">
                 <div>
                   <div className="flex flex-wrap items-center gap-2 mb-1.5">
-                    <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-[0.6875rem] font-bold border ${STATUS_STYLES[group.status]}`}>
+                    <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-[0.6875rem] font-bold border ${STATUS_STYLES[group.status] ?? STATUS_STYLE_FALLBACK}`}>
                       {group.status}
                     </span>
                     <span className="text-[0.6875rem] font-bold uppercase tracking-widest text-navy-400">
@@ -226,11 +244,16 @@ export function GalleryGrid() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
+            role="dialog"
+            aria-modal="true"
+            aria-label="Image preview"
             className="fixed inset-0 z-[100] bg-dark/95 flex flex-col items-center justify-center p-4"
             onClick={() => setLightbox(null)}
           >
             <button
+              ref={closeBtnRef}
               className="absolute top-4 right-4 w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-white/20 transition-colors"
+              aria-label="Close image preview"
               onClick={() => setLightbox(null)}
             >
               <X size={18} />

@@ -38,12 +38,19 @@
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    cursor: none;
     overflow-x: clip;
   }
-  /* Restore pointer cursor on interactive elements so the OS cursor still
-     shows for users whose browser hides the custom cursor (e.g. touch-only) */
-  a, button, [role="button"], input, textarea, select, label {
+  /* Hide the OS cursor only when the custom JS cursor has successfully mounted.
+     Without the class (JS failure, no-JS, touch devices), the browser's default
+     cursor is preserved so interactive elements remain usable. */
+  html.custom-cursor-active body,
+  html.custom-cursor-active a,
+  html.custom-cursor-active button,
+  html.custom-cursor-active [role="button"],
+  html.custom-cursor-active input,
+  html.custom-cursor-active textarea,
+  html.custom-cursor-active select,
+  html.custom-cursor-active label {
     cursor: none;
   }
   h1, h2, h3, h4, h5, h6 {
