@@ -19,13 +19,13 @@ export function AboutPreview() {
 
   return (
     <section ref={ref} className="section-py bg-bg overflow-hidden">
-      <div className="container-xl grid lg:grid-cols-2 gap-16 items-center">
+      <div className="container-xl grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
         {/* Image stack */}
         <motion.div
           initial={{ opacity: 0, x: -30 }}
           animate={inView ? { opacity: 1, x: 0 } : {}}
           transition={{ duration: 0.7, ease: 'easeOut' as const}}
-          className="relative"
+          className="relative pb-6 sm:pb-0"
         >
           <div className="relative rounded-2xl overflow-hidden aspect-[4/3] shadow-[var(--shadow-float)]">
             {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -36,12 +36,12 @@ export function AboutPreview() {
             />
           </div>
           {/* Floating card */}
-          <div className="absolute -bottom-6 -right-6 bg-white rounded-xl p-5 shadow-[var(--shadow-float)] border border-navy-100 max-w-[200px]">
+          <div className="hidden sm:block absolute -bottom-6 -right-6 bg-white rounded-xl p-5 shadow-[var(--shadow-float)] border border-navy-100 max-w-[200px]">
             <p className="text-3xl font-bold text-dark leading-none">{new Date().getFullYear() - COMPANY.founded}+</p>
             <p className="text-xs text-navy-500 mt-1 leading-snug">Years of civil construction since {COMPANY.founded}</p>
           </div>
           {/* ISO badge */}
-          <div className="absolute -top-4 -left-4 bg-primary text-white rounded-xl px-4 py-2.5 shadow-lg">
+          <div className="hidden sm:block absolute -top-4 -left-4 bg-primary text-white rounded-xl px-4 py-2.5 shadow-lg">
             <p className="text-[0.625rem] font-bold uppercase tracking-widest leading-none">Certified</p>
             <p className="text-sm font-bold mt-0.5">ISO 9001:2015</p>
           </div>

@@ -38,7 +38,7 @@ export function Footer() {
   return (
     <footer className="bg-dark text-white">
       {/* Main footer */}
-      <div className="container-xl py-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12">
+      <div className="container-xl py-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 lg:gap-12">
         {/* Brand column */}
         <div className="lg:col-span-2 flex flex-col gap-6">
           <span className="inline-flex items-center w-fit rounded-xl bg-white px-3 py-2">

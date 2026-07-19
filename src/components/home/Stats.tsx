@@ -48,7 +48,7 @@ function StatItem({
       initial={{ opacity: 0, y: 16 }}
       animate={inView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.5, delay, ease: 'easeOut' as const}}
-      className="flex items-center gap-4 px-7 py-6 flex-1 min-w-0"
+      className="flex items-center gap-4 px-4 sm:px-7 py-5 sm:py-6 flex-1 min-w-0"
     >
       <span
         className={`w-12 h-12 rounded-xl flex items-center justify-center shrink-0 ${colorClass}`}

@@ -113,7 +113,7 @@ export function Hero() {
 
             <h1
               data-hero-item
-              className="text-white font-bold text-5xl sm:text-6xl lg:text-[4.5rem] leading-[1.06] tracking-tight"
+              className="text-white font-bold text-[2.25rem] sm:text-5xl lg:text-[4.5rem] leading-[1.06] tracking-tight"
             >
               {"Building Tomorrow’s"}
               <br />

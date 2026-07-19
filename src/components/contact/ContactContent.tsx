@@ -44,7 +44,7 @@ export function ContactContent() {
 
   return (
     <section className="section-py bg-bg">
-      <div className="container-xl grid lg:grid-cols-[1fr_400px] gap-12">
+      <div className="container-xl grid lg:grid-cols-[1fr_400px] gap-8 lg:gap-12">
         {/* Form */}
         <motion.div {...fadeUp()}>
           {submitted ? (
@@ -55,7 +55,7 @@ export function ContactContent() {
               <button onClick={() => setSubmitted(false)} className="mt-8 btn-outline-dark text-sm">Send Another Message</button>
             </div>
           ) : (
-            <div className="bg-white rounded-2xl border border-navy-100 shadow-[var(--shadow-card)] p-8">
+            <div className="bg-white rounded-2xl border border-navy-100 shadow-[var(--shadow-card)] p-5 sm:p-8">
               <h2 className="text-2xl font-bold text-dark mb-6">Send Us a Message</h2>
               <form onSubmit={handleSubmit(onSubmit)} noValidate className="space-y-5">
                 <div className="grid sm:grid-cols-2 gap-5">

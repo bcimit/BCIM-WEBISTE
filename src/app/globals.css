@@ -39,6 +39,7 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     cursor: none;
+    overflow-x: clip;
   }
   /* Restore pointer cursor on interactive elements so the OS cursor still
      shows for users whose browser hides the custom cursor (e.g. touch-only) */
@@ -162,5 +163,39 @@
   .btn-outline-dark:hover {
     background: #2563EB;
     color: #ffffff;
+  }
+
+  /* WhatsApp floating action button */
+  .whatsapp-fab {
+    position: fixed;
+    bottom: calc(1.75rem + env(safe-area-inset-bottom, 0px));
+    right: calc(1.75rem + env(safe-area-inset-right, 0px));
+    z-index: 9000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: #25D366;
+    color: #ffffff;
+    box-shadow: 0 4px 20px rgba(37, 211, 102, 0.45), 0 2px 8px rgba(0,0,0,0.15);
+    transition: transform 0.2s, box-shadow 0.2s;
+    animation: whatsapp-pulse 2.5s ease-in-out infinite;
+  }
+
+  .whatsapp-fab:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 28px rgba(37, 211, 102, 0.6), 0 2px 8px rgba(0,0,0,0.15);
+    animation: none;
+  }
+
+  @keyframes whatsapp-pulse {
+    0%, 100% { box-shadow: 0 4px 20px rgba(37, 211, 102, 0.45), 0 0 0 0 rgba(37, 211, 102, 0.4); }
+    50%       { box-shadow: 0 4px 20px rgba(37, 211, 102, 0.45), 0 0 0 10px rgba(37, 211, 102, 0); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .whatsapp-fab { animation: none; }
   }
 }
