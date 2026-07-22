@@ -16,6 +16,8 @@ import {
   Wrench,
   Clipboard,
   ShieldCheck,
+  Download,
+  LogIn,
 } from 'lucide-react'
 import { NAV_LINKS, COMPANY } from '@/lib/constants'
 import { cn } from '@/lib/utils'
@@ -32,6 +34,7 @@ export function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false)
   const [servicesOpen, setServicesOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
+  const isHome = pathname === '/'
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8)
@@ -44,18 +47,29 @@ export function Navbar() {
   }, [pathname])
 
   const servicesLink = NAV_LINKS.find((l) => l.label === 'Services')
+  const transparent = isHome && !scrolled && !mobileOpen
 
   return (
     <header
       className={cn(
-        'fixed top-0 inset-x-0 z-50 transition-shadow duration-300 bg-white',
-        scrolled ? 'shadow-[0_1px_0_rgba(15,23,42,.08),0_4px_16px_rgba(15,23,42,.06)]' : '',
+        'fixed top-0 inset-x-0 z-50 transition-all duration-500',
+        transparent
+          ? 'bg-transparent'
+          : 'bg-white/95 backdrop-blur-xl shadow-[0_1px_0_rgba(15,23,42,.08),0_4px_16px_rgba(15,23,42,.06)]',
       )}
     >
-      <div className="container-xl h-[68px] flex items-center justify-between gap-6">
+      <div className="container-xl h-[72px] flex items-center justify-between gap-6">
         {/* Logo */}
         <Link href="/" className="shrink-0 flex items-center" aria-label="BCIM Engineering home">
-          <Image src="/bcim-logo.png" alt="BCIM Engineering" width={120} height={40} priority style={{ width: 120, height: 'auto' }} />
+          <Image
+            src="/bcim-logo.png"
+            alt="BCIM Engineering"
+            width={130}
+            height={44}
+            priority
+            className={transparent ? 'brightness-0 invert' : ''}
+            style={{ width: 'auto', height: 'auto' }}
+          />
         </Link>
 
         {/* Desktop nav */}
@@ -74,8 +88,8 @@ export function Navbar() {
                   className={cn(
                     'flex items-center gap-1 px-3 py-2 text-[0.875rem] font-medium rounded-md transition-colors',
                     pathname.startsWith('/services')
-                      ? 'text-primary'
-                      : 'text-navy-700 hover:text-primary',
+                      ? transparent ? 'text-white' : 'text-primary'
+                      : transparent ? 'text-white/80 hover:text-white' : 'text-navy-700 hover:text-primary',
                   )}
                 >
                   Services
@@ -142,12 +156,12 @@ export function Navbar() {
                 className={cn(
                   'relative px-3 py-2 text-[0.875rem] font-medium rounded-md transition-colors',
                   pathname === link.href || (link.href !== '/' && pathname.startsWith(link.href))
-                    ? 'text-primary'
-                    : 'text-navy-700 hover:text-primary',
+                    ? transparent ? 'text-white' : 'text-primary'
+                    : transparent ? 'text-white/80 hover:text-white' : 'text-navy-700 hover:text-primary',
                 )}
               >
                 {link.label}
-                {(pathname === link.href || (link.href !== '/' && pathname.startsWith(link.href))) && (
+                {!transparent && (pathname === link.href || (link.href !== '/' && pathname.startsWith(link.href))) && (
                   <span className="absolute inset-x-3 -bottom-[1px] h-0.5 rounded-full bg-primary" />
                 )}
               </Link>
@@ -156,32 +170,54 @@ export function Navbar() {
         </nav>
 
         {/* Right actions */}
-        <div className="hidden lg:flex items-center gap-4 shrink-0">
-          <span
-            className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-primary-light text-primary text-[0.6875rem] font-bold uppercase tracking-wide"
-            title="Bureau Veritas-certified ISO 9001:2015, ISO 14001:2015 & ISO 45001:2018"
-          >
-            <ShieldCheck size={13} />
-            ISO 9001 · 14001 · 45001
-          </span>
+        <div className="hidden lg:flex items-center gap-3 shrink-0">
           <a
-            href={COMPANY.phoneHref}
-            className="flex items-center gap-2 text-[0.875rem] font-medium text-navy-700 hover:text-primary transition-colors"
+            href="/BCIM-Company-Profile.pdf"
+            target="_blank"
+            rel="noreferrer"
+            className={cn(
+              'flex items-center gap-1.5 px-3 py-2 rounded-lg text-[0.8125rem] font-semibold transition-colors',
+              transparent
+                ? 'text-white/80 hover:text-white hover:bg-white/10'
+                : 'text-navy-700 hover:text-primary hover:bg-primary-light',
+            )}
           >
-            <Phone size={14} />
-            {COMPANY.phone}
+            <Download size={14} />
+            Profile
+          </a>
+          <a
+            href="https://bcimhr.bcim.in"
+            target="_blank"
+            rel="noreferrer"
+            className={cn(
+              'flex items-center gap-1.5 px-3 py-2 rounded-lg text-[0.8125rem] font-semibold transition-colors',
+              transparent
+                ? 'text-white/80 hover:text-white hover:bg-white/10'
+                : 'text-navy-700 hover:text-primary hover:bg-primary-light',
+            )}
+          >
+            <LogIn size={14} />
+            ERP Login
           </a>
           <Link
             href="/request-quote"
-            className="btn-primary text-sm px-5 py-2.5"
+            className={cn(
+              'flex items-center gap-2 px-5 py-2.5 rounded-lg text-sm font-semibold transition-all',
+              transparent
+                ? 'bg-white text-dark hover:bg-white/90 shadow-lg'
+                : 'bg-primary text-white hover:bg-primary-dark',
+            )}
           >
-            Request Quote <ArrowRight size={14} />
+            Get a Quote <ArrowRight size={14} />
           </Link>
         </div>
 
         {/* Mobile burger */}
         <button
-          className="lg:hidden p-2 text-navy-900 hover:text-primary transition-colors"
+          className={cn(
+            'lg:hidden p-2 transition-colors',
+            transparent ? 'text-white hover:text-white/80' : 'text-navy-900 hover:text-primary',
+          )}
           onClick={() => setMobileOpen((v) => !v)}
           aria-label={mobileOpen ? 'Close menu' : 'Open menu'}
           aria-expanded={mobileOpen}
@@ -214,10 +250,24 @@ export function Navbar() {
                 </Link>
               ))}
               <div className="pt-4 flex flex-col gap-3">
-                <span className="flex items-center gap-1.5 w-fit px-2.5 py-1 rounded-full bg-primary-light text-primary text-[0.6875rem] font-bold uppercase tracking-wide">
-                  <ShieldCheck size={13} />
-                  ISO 9001 · 14001 · 45001
-                </span>
+                <div className="flex gap-2">
+                  <a
+                    href="/BCIM-Company-Profile.pdf"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="flex items-center gap-1.5 px-3 py-2 rounded-lg text-sm font-medium text-navy-700 bg-bg border border-navy-100"
+                  >
+                    <Download size={14} /> Profile
+                  </a>
+                  <a
+                    href="https://bcimhr.bcim.in"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="flex items-center gap-1.5 px-3 py-2 rounded-lg text-sm font-medium text-navy-700 bg-bg border border-navy-100"
+                  >
+                    <LogIn size={14} /> ERP Login
+                  </a>
+                </div>
                 <a
                   href={COMPANY.phoneHref}
                   className="flex items-center gap-2 text-sm font-medium text-navy-700"
@@ -225,7 +275,7 @@ export function Navbar() {
                   <Phone size={14} /> {COMPANY.phone}
                 </a>
                 <Link href="/request-quote" className="btn-primary text-sm justify-center">
-                  Request a Quote <ArrowRight size={14} />
+                  Get a Quote <ArrowRight size={14} />
                 </Link>
               </div>
             </div>
