@@ -60,15 +60,18 @@ export function Navbar() {
     >
       <div className="container-xl h-[72px] flex items-center justify-between gap-6">
         {/* Logo */}
-        <Link href="/" className="shrink-0 flex items-center" aria-label="BCIM Engineering home">
+        <Link
+          href="/"
+          aria-label="BCIM Engineering home"
+          className={`shrink-0 flex items-center transition-all duration-500 ${transparent ? 'bg-white/90 backdrop-blur-sm rounded-xl px-3 py-1.5' : ''}`}
+        >
           <Image
             src="/bcim-logo.png"
             alt="BCIM Engineering"
             width={130}
             height={44}
             priority
-            className={transparent ? 'brightness-0 invert' : ''}
-            style={{ width: 'auto', height: 'auto' }}
+            style={{ width: 110, height: 'auto' }}
           />
         </Link>
 
