@@ -6,6 +6,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { MapPin, ArrowRight } from 'lucide-react'
 import { PROJECTS } from '@/lib/constants'
 import { resolveImage } from '@/lib/utils'
+import { Tilt3D } from '@/components/shared/Tilt3D'
 
 const STATUS_FILTERS = ['All', 'Ongoing', 'Completed'] as const
 const CAT_FILTERS = ['All', 'Commercial', 'Residential'] as const
@@ -51,8 +52,8 @@ export function ProjectsGrid() {
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.97 }}
                 transition={{ duration: 0.25, delay: i * 0.04 }}
-                className="group bg-white rounded-2xl overflow-hidden border border-navy-100 shadow-[var(--shadow-card)] hover:shadow-[var(--shadow-float)] transition-shadow duration-300"
               >
+                <Tilt3D intensity={7} glowColor="rgba(37,99,235,0.18)" className="group bg-white rounded-2xl overflow-hidden border border-navy-100 shadow-[var(--shadow-card)] hover:shadow-[var(--shadow-float)] transition-shadow duration-300">
                 <div className="relative h-52 overflow-hidden">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img src={resolveImage(p.image, 700)}
@@ -72,6 +73,7 @@ export function ProjectsGrid() {
                   {p.area && <p className="text-navy-500 text-xs mt-1"><span className="text-navy-700 font-medium">{p.area}</span> built-up area</p>}
                   <p className="text-navy-400 text-xs mt-1.5 leading-snug line-clamp-2">{p.scope}</p>
                 </div>
+                </Tilt3D>
               </motion.article>
             ))}
           </AnimatePresence>

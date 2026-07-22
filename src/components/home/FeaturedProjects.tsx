@@ -6,6 +6,7 @@ import { motion, useInView, AnimatePresence } from 'framer-motion'
 import { MapPin, ArrowRight, ArrowUpRight } from 'lucide-react'
 import { PROJECTS } from '@/lib/constants'
 import { resolveImage } from '@/lib/utils'
+import { Tilt3D } from '@/components/shared/Tilt3D'
 
 const CATEGORY_COLORS: Record<string, string> = {
   Commercial: 'bg-primary',
@@ -92,8 +93,8 @@ export function FeaturedProjects() {
                 initial={{ opacity: 0, y: 22 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4, delay: i * 0.06 }}
-                className="group bg-white rounded-2xl overflow-hidden border border-navy-100 shadow-[var(--shadow-card)] hover:shadow-[var(--shadow-float)] transition-all duration-300"
               >
+                <Tilt3D intensity={7} glowColor="rgba(37,99,235,0.18)" className="bg-white rounded-2xl overflow-hidden border border-navy-100 shadow-[var(--shadow-card)] hover:shadow-[var(--shadow-float)] transition-shadow duration-300 group">
                 {/* Image */}
                 <div className="relative h-52 overflow-hidden">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -140,6 +141,7 @@ export function FeaturedProjects() {
                     </p>
                   )}
                 </div>
+                </Tilt3D>
               </motion.article>
             ))}
           </motion.div>

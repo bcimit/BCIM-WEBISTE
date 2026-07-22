@@ -4,6 +4,7 @@ import { useState, useEffect, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { X, ZoomIn, MapPin } from 'lucide-react'
 import { resolveImage } from '@/lib/utils'
+import { Tilt3D } from '@/components/shared/Tilt3D'
 
 interface GalleryImage {
   src: string
@@ -211,24 +212,30 @@ export function GalleryGrid() {
                     whileInView={{ opacity: 1, scale: 1 }}
                     viewport={{ once: true, margin: '-40px' }}
                     transition={{ duration: 0.35, delay: ii * 0.05 }}
-                    className="group relative rounded-xl overflow-hidden cursor-pointer shadow-[var(--shadow-card)] hover:shadow-[var(--shadow-float)] transition-shadow duration-300"
-                    onClick={() => setLightbox({ ...img, groupName: group.name })}
                   >
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img
-                      src={resolveImage(img.src, 700)}
-                      alt={img.caption}
-                      loading="lazy"
-                      className="w-full aspect-[4/3] object-cover group-hover:scale-105 transition-transform duration-500"
-                    />
-                    {/* Hover overlay */}
-                    <div className="absolute inset-0 bg-dark/0 group-hover:bg-dark/45 transition-colors duration-300 flex items-center justify-center">
-                      <ZoomIn className="text-white opacity-0 group-hover:opacity-100 transition-opacity" size={22} />
-                    </div>
-                    {/* Caption */}
-                    <div className="absolute bottom-0 inset-x-0 px-3 py-2.5 bg-gradient-to-t from-dark/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                      <p className="text-white text-[0.6875rem] leading-snug">{img.caption}</p>
-                    </div>
+                    <Tilt3D
+                      intensity={6}
+                      glowColor="rgba(37,99,235,0.2)"
+                      className="group relative rounded-xl overflow-hidden cursor-pointer shadow-[var(--shadow-card)] hover:shadow-[var(--shadow-float)] transition-shadow duration-300"
+                    >
+                      <div onClick={() => setLightbox({ ...img, groupName: group.name })}>
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                        <img
+                          src={resolveImage(img.src, 700)}
+                          alt={img.caption}
+                          loading="lazy"
+                          className="w-full aspect-[4/3] object-cover group-hover:scale-105 transition-transform duration-500"
+                        />
+                        {/* Hover overlay */}
+                        <div className="absolute inset-0 bg-dark/0 group-hover:bg-dark/45 transition-colors duration-300 flex items-center justify-center">
+                          <ZoomIn className="text-white opacity-0 group-hover:opacity-100 transition-opacity" size={22} />
+                        </div>
+                        {/* Caption */}
+                        <div className="absolute bottom-0 inset-x-0 px-3 py-2.5 bg-gradient-to-t from-dark/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                          <p className="text-white text-[0.6875rem] leading-snug">{img.caption}</p>
+                        </div>
+                      </div>
+                    </Tilt3D>
                   </motion.div>
                 ))}
               </div>

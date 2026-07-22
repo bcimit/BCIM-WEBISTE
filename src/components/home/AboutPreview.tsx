@@ -5,6 +5,7 @@ import { motion, useInView } from 'framer-motion'
 import { useRef } from 'react'
 import { ArrowRight, CheckCircle2 } from 'lucide-react'
 import { COMPANY } from '@/lib/constants'
+import { Tilt3D } from '@/components/shared/Tilt3D'
 
 const HIGHLIGHTS = [
   'Bureau Veritas-certified ISO 9001, 14001 & 45001',
@@ -27,14 +28,16 @@ export function AboutPreview() {
           transition={{ duration: 0.7, ease: 'easeOut' as const}}
           className="relative pb-6 sm:pb-0"
         >
-          <div className="relative rounded-2xl overflow-hidden aspect-[4/3] shadow-[var(--shadow-float)]">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src="https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=1200&auto=format&fit=crop"
-              alt="BCIM Engineering construction team at work"
-              className="w-full h-full object-cover"
-            />
-          </div>
+          <Tilt3D intensity={8} glowColor="rgba(37,99,235,0.15)" className="rounded-2xl shadow-[var(--shadow-float)]">
+            <div className="relative rounded-2xl overflow-hidden aspect-[4/3]">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=1200&auto=format&fit=crop"
+                alt="BCIM Engineering construction team at work"
+                className="w-full h-full object-cover"
+              />
+            </div>
+          </Tilt3D>
           {/* Floating card */}
           <div className="hidden sm:block absolute -bottom-6 -right-6 bg-white rounded-xl p-5 shadow-[var(--shadow-float)] border border-navy-100 max-w-[200px]">
             <p className="text-3xl font-bold text-dark leading-none">{new Date().getFullYear() - COMPANY.founded}+</p>
