@@ -3,7 +3,7 @@
 import { useEffect, useRef } from 'react'
 import Link from 'next/link'
 import { ArrowRight, Phone, Mail, MapPin, ChevronDown } from 'lucide-react'
-import { motion } from 'framer-motion'
+import { motion, type Variants } from 'framer-motion'
 import { gsap } from 'gsap'
 import { COMPANY } from '@/lib/constants'
 
@@ -17,15 +17,16 @@ const KPI_DATA = [
 ]
 
 /* ─── animation variants ─────────────────────────────────────── */
-const clipReveal = {
+const EASE: [number, number, number, number] = [0.22, 1, 0.36, 1]
+
+const clipReveal: Variants = {
   hidden: { y: '110%', opacity: 0 },
-  show:   { y: '0%',   opacity: 1, transition: { duration: 0.85, ease: [0.22, 1, 0.36, 1] } },
+  show:   { y: '0%',   opacity: 1, transition: { duration: 0.85, ease: EASE } },
 }
 
-const fadeBlur = {
+const fadeBlur: Variants = {
   hidden: { opacity: 0, filter: 'blur(12px)', y: 16 },
-  show:   { opacity: 1, filter: 'blur(0px)',  y: 0,
-    transition: { duration: 0.9, ease: [0.22, 1, 0.36, 1] } },
+  show:   { opacity: 1, filter: 'blur(0px)',  y: 0, transition: { duration: 0.9, ease: EASE } },
 }
 
 const staggerContainer = (delay = 0, stagger = 0.12) => ({
