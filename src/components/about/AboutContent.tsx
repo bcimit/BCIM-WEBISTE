@@ -20,6 +20,11 @@ const VALUES = [
   { icon: Eye, label: 'Safety First', desc: 'Zero-compromise on site safety for every worker, every day.' },
 ]
 
+function initials(name: string) {
+  const words = name.replace(/^(Mr|Mrs|Ms|Dr)\.?\s+/i, '').split(/\s+/).filter(w => /[A-Za-z]/.test(w))
+  return ((words[0]?.[0] ?? '') + (words.length > 1 ? words[words.length - 1][0] : '')).toUpperCase()
+}
+
 function fadeUp(delay = 0) {
   return {
     initial: { opacity: 0, y: 20 },
@@ -80,11 +85,23 @@ export function AboutContent() {
             <h2 className="text-4xl font-bold text-dark">The Board &amp; Senior Management</h2>
           </motion.div>
 
-          <div className="grid sm:grid-cols-2 gap-5 max-w-2xl mx-auto mb-10">
+          <div className="grid sm:grid-cols-2 gap-6 max-w-3xl mx-auto mb-14">
             {BOARD_OF_DIRECTORS.map(({ name, role }, i) => (
-              <motion.div key={name} {...fadeUp(i * 0.08)} className="p-6 rounded-2xl border border-navy-100 bg-bg text-center">
-                <h3 className="font-bold text-dark">{name}</h3>
-                <p className="text-primary text-xs font-bold uppercase tracking-wide mt-1">{role}</p>
+              <motion.div key={name} {...fadeUp(i * 0.08)}
+                className="group relative overflow-hidden rounded-2xl border border-navy-100 bg-white p-7 shadow-[var(--shadow-card)] hover:border-primary/30 hover:shadow-[var(--shadow-float)] transition-all">
+                <span aria-hidden="true" className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-primary to-primary/40" />
+                <div className="flex items-center gap-5">
+                  <span aria-hidden="true"
+                    className="w-16 h-16 shrink-0 rounded-2xl bg-gradient-to-br from-primary to-primary/70 text-white text-xl font-bold flex items-center justify-center shadow-md shadow-primary/20">
+                    {initials(name)}
+                  </span>
+                  <div className="min-w-0 text-left">
+                    <h3 className="font-bold text-dark text-lg leading-snug">{name}</h3>
+                    <span className="inline-block mt-2 px-3 py-1 rounded-full bg-primary-light text-primary text-[0.6875rem] font-bold uppercase tracking-wider">
+                      {role}
+                    </span>
+                  </div>
+                </div>
               </motion.div>
             ))}
           </div>
@@ -92,13 +109,25 @@ export function AboutContent() {
           <p id="senior-management" className="eyebrow text-center mb-6 scroll-mt-28">Senior Management</p>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
             {SENIOR_MANAGEMENT.map(({ name, role, experience, bio }, i) => (
-              <motion.div key={name} {...fadeUp((i % 3) * 0.06)} className="p-5 rounded-xl border border-navy-100 bg-bg">
-                <div className="flex items-baseline justify-between gap-2">
-                  <h3 className="font-bold text-dark text-sm">{name}</h3>
-                  {experience && <span className="text-primary text-[0.6875rem] font-bold shrink-0">{experience}</span>}
+              <motion.div key={name} {...fadeUp((i % 3) * 0.06)}
+                className="h-full flex flex-col p-6 rounded-2xl border border-navy-100 bg-white shadow-[var(--shadow-card)] hover:border-primary/30 hover:shadow-[var(--shadow-float)] transition-all">
+                <div className="flex items-start gap-4">
+                  <span aria-hidden="true" className="w-12 h-12 shrink-0 rounded-xl bg-primary-light text-primary font-bold flex items-center justify-center">
+                    {initials(name)}
+                  </span>
+                  <div className="min-w-0">
+                    <h3 className="font-bold text-dark leading-snug">{name}</h3>
+                    <p className="text-primary text-xs font-semibold mt-1 leading-snug">{role}</p>
+                  </div>
                 </div>
-                <p className="text-primary text-xs font-semibold mt-1">{role}</p>
-                {bio && <p className="text-navy-500 text-xs mt-2 leading-relaxed">{bio}</p>}
+                {bio && <p className="text-navy-500 text-[0.8125rem] mt-4 leading-relaxed">{bio}</p>}
+                {experience && (
+                  <p className="mt-auto pt-4">
+                    <span className="inline-block px-2.5 py-1 rounded-full bg-primary-light text-primary text-[0.6875rem] font-bold">
+                      {experience} experience
+                    </span>
+                  </p>
+                )}
               </motion.div>
             ))}
           </div>
