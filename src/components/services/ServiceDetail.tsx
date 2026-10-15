@@ -14,7 +14,6 @@ interface ServiceDetailData {
   intro: string
   capabilities: { title: string; desc: string }[]
   differentiators: string[]
-  stats: { value: string; label: string }[]
   image: string
   projects: string[]
 }
@@ -33,7 +32,7 @@ export function ServiceDetail({ data }: { data: ServiceDetailData }) {
 
   return (
     <>
-      {/* Intro + stats */}
+      {/* Intro */}
       <section className="section-py bg-white">
         <div className="container-xl grid lg:grid-cols-3 gap-12">
           <div className="lg:col-span-2">
@@ -54,16 +53,6 @@ export function ServiceDetail({ data }: { data: ServiceDetailData }) {
 
           {/* Side panel */}
           <div className="flex flex-col gap-6">
-            {/* Stats */}
-            <motion.div {...fadeUp(0.1)} className="rounded-2xl border border-navy-100 bg-bg p-6 flex flex-col gap-5">
-              {data.stats.map(({ value, label }) => (
-                <div key={label}>
-                  <p className={`text-3xl font-black bg-gradient-to-r ${data.color} bg-clip-text text-transparent`}>{value}</p>
-                  <p className="text-navy-500 text-xs mt-0.5">{label}</p>
-                </div>
-              ))}
-            </motion.div>
-
             {/* Why BCIM */}
             <motion.div {...fadeUp(0.15)} className="rounded-2xl border border-navy-100 bg-bg p-6">
               <h4 className="font-bold text-dark mb-4">The BCIM Difference</h4>

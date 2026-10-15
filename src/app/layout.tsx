@@ -19,7 +19,7 @@ export const metadata: Metadata = {
     template: '%s | BCIM Engineering',
   },
   description:
-    'ISO 9001:2015 certified construction company delivering premium commercial offices, residential complexes, and fit-out projects across South India since 2018.',
+    'ISO 9001:2015 certified construction company delivering premium commercial offices and residential complexes across South India since 2018.',
   keywords: [
     'commercial construction company India',
     'residential construction company Hyderabad',
@@ -102,7 +102,7 @@ const LD_JSON = {
             itemOffered: {
               '@type': 'Service',
               name: 'Commercial Construction',
-              description: 'Corporate offices, IT parks, retail complexes, hospitals, and educational institutions across South India.',
+              description: 'Corporate offices and IT parks across South India.',
             },
           },
           {

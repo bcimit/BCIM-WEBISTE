@@ -70,7 +70,7 @@ export const NAV_LINKS: NavLink[] = [
       {
         label: 'Commercial Construction',
         href: '/services/commercial',
-        description: 'Offices, campuses, retail & hospitality',
+        description: 'Corporate offices & IT campuses',
       },
       {
         label: 'Residential Construction',
@@ -102,15 +102,10 @@ export const SERVICES: Service[] = [
     id: 'commercial',
     title: 'Commercial Construction',
     description:
-      'We design and build premium commercial spaces — from corporate headquarters to retail complexes — with speed, precision, and an uncompromising commitment to quality.',
+      'We design and build premium commercial spaces — from corporate headquarters to IT campuses — with speed, precision, and an uncompromising commitment to quality.',
     items: [
       'Corporate Office Buildings',
       'IT Parks & Tech Campuses',
-      'Shopping Complexes & Malls',
-      'Hotels & Hospitality',
-      'Hospitals & Healthcare Facilities',
-      'Educational Institutions',
-      'Warehouses & Logistics Hubs',
     ],
     icon: 'Building2',
     image: '/images/projects/techridge-p3.jpg',
