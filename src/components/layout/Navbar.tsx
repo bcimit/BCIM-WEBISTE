@@ -14,7 +14,6 @@ import {
   Building2,
   Home,
   ShieldCheck,
-  Download,
   LogIn,
 } from 'lucide-react'
 import { NAV_LINKS, COMPANY } from '@/lib/constants'
@@ -78,7 +77,7 @@ export function Navbar() {
         </Link>
 
         {/* Desktop nav */}
-        <nav className="hidden lg:flex items-center gap-0.5" aria-label="Main navigation">
+        <nav className="hidden xl:flex items-center gap-1" aria-label="Main navigation">
           {NAV_LINKS.map((link) =>
             DROPDOWNS.includes(link.label) ? (
               <div
@@ -92,7 +91,7 @@ export function Navbar() {
                   aria-haspopup="true"
                   aria-expanded={openMenu === link.label}
                   className={cn(
-                    'flex items-center gap-1 px-3 py-2 text-[0.875rem] font-medium rounded-md transition-colors',
+                    'flex items-center gap-1 px-3 py-2 text-[0.875rem] font-medium rounded-md transition-colors whitespace-nowrap',
                     DROPDOWN_PATHS[link.label]?.includes(pathname)
                       ? transparent ? 'text-white' : 'text-primary'
                       : transparent ? 'text-white/80 hover:text-white' : 'text-navy-700 hover:text-primary',
@@ -138,7 +137,7 @@ export function Navbar() {
                   aria-expanded={servicesOpen}
                   aria-haspopup="true"
                   className={cn(
-                    'flex items-center gap-1 px-3 py-2 text-[0.875rem] font-medium rounded-md transition-colors',
+                    'flex items-center gap-1 px-3 py-2 text-[0.875rem] font-medium rounded-md transition-colors whitespace-nowrap',
                     pathname.startsWith('/services')
                       ? transparent ? 'text-white' : 'text-primary'
                       : transparent ? 'text-white/80 hover:text-white' : 'text-navy-700 hover:text-primary',
@@ -206,7 +205,7 @@ export function Navbar() {
                 key={link.href}
                 href={link.href}
                 className={cn(
-                  'relative px-3 py-2 text-[0.875rem] font-medium rounded-md transition-colors',
+                  'relative px-3 py-2 text-[0.875rem] font-medium rounded-md transition-colors whitespace-nowrap',
                   pathname === link.href || (link.href !== '/' && pathname.startsWith(link.href))
                     ? transparent ? 'text-white' : 'text-primary'
                     : transparent ? 'text-white/80 hover:text-white' : 'text-navy-700 hover:text-primary',
@@ -222,27 +221,13 @@ export function Navbar() {
         </nav>
 
         {/* Right actions */}
-        <div className="hidden lg:flex items-center gap-3 shrink-0">
-          <a
-            href="/BCIM-Company-Profile.pdf"
-            target="_blank"
-            rel="noreferrer"
-            className={cn(
-              'flex items-center gap-1.5 px-3 py-2 rounded-lg text-[0.8125rem] font-semibold transition-colors',
-              transparent
-                ? 'text-white/80 hover:text-white hover:bg-white/10'
-                : 'text-navy-700 hover:text-primary hover:bg-primary-light',
-            )}
-          >
-            <Download size={14} />
-            Profile
-          </a>
+        <div className="hidden xl:flex items-center gap-3 shrink-0">
           <a
             href="https://bcimhr.bcim.in"
             target="_blank"
             rel="noreferrer"
             className={cn(
-              'flex items-center gap-1.5 px-3 py-2 rounded-lg text-[0.8125rem] font-semibold transition-colors',
+              'flex items-center gap-1.5 px-3 py-2 rounded-lg text-[0.8125rem] font-semibold transition-colors whitespace-nowrap',
               transparent
                 ? 'text-white/80 hover:text-white hover:bg-white/10'
                 : 'text-navy-700 hover:text-primary hover:bg-primary-light',
@@ -251,23 +236,12 @@ export function Navbar() {
             <LogIn size={14} />
             ERP Login
           </a>
-          <Link
-            href="/request-quote"
-            className={cn(
-              'flex items-center gap-2 px-5 py-2.5 rounded-lg text-sm font-semibold transition-all',
-              transparent
-                ? 'bg-white text-dark hover:bg-white/90 shadow-lg'
-                : 'bg-primary text-white hover:bg-primary-dark',
-            )}
-          >
-            Get a Quote <ArrowRight size={14} />
-          </Link>
         </div>
 
         {/* Mobile burger */}
         <button
           className={cn(
-            'lg:hidden p-2 transition-colors',
+            'xl:hidden p-2 transition-colors',
             transparent ? 'text-white hover:text-white/80' : 'text-navy-900 hover:text-primary',
           )}
           onClick={() => setMobileOpen((v) => !v)}
@@ -286,7 +260,7 @@ export function Navbar() {
             animate={{ height: 'auto', opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
             transition={{ duration: 0.2 }}
-            className="lg:hidden bg-white border-t border-navy-100 overflow-hidden"
+            className="xl:hidden bg-white border-t border-navy-100 overflow-hidden"
           >
             <div className="container-xl py-4 flex flex-col gap-1">
               {NAV_LINKS.map((link) => (
@@ -316,14 +290,6 @@ export function Navbar() {
               <div className="pt-4 flex flex-col gap-3">
                 <div className="flex gap-2">
                   <a
-                    href="/BCIM-Company-Profile.pdf"
-                    target="_blank"
-                    rel="noreferrer"
-                    className="flex items-center gap-1.5 px-3 py-2 rounded-lg text-sm font-medium text-navy-700 bg-bg border border-navy-100"
-                  >
-                    <Download size={14} /> Profile
-                  </a>
-                  <a
                     href="https://bcimhr.bcim.in"
                     target="_blank"
                     rel="noreferrer"
@@ -338,9 +304,6 @@ export function Navbar() {
                 >
                   <Phone size={14} /> {COMPANY.phone}
                 </a>
-                <Link href="/request-quote" className="btn-primary text-sm justify-center">
-                  Get a Quote <ArrowRight size={14} />
-                </Link>
               </div>
             </div>
           </motion.div>
