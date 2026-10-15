@@ -86,7 +86,7 @@ const LD_JSON = {
         'https://www.x.com/BcimPvtLtd',
       ],
       numberOfEmployees: { '@type': 'QuantitativeValue', value: 750 },
-      areaServed: ['Bengaluru', 'Hyderabad', 'Thane', 'South India'],
+      areaServed: ['Bengaluru', 'Hyderabad', 'South India'],
       award: 'International Safety Award — Merit 2024 (British Safety Council)',
       hasCredential: [
         { '@type': 'EducationalOccupationalCredential', name: 'ISO 9001:2015 — Quality Management' },
@@ -158,12 +158,13 @@ const LD_JSON = {
         },
         {
           '@type': 'Place',
-          name: 'Regional Office — Thane',
+          name: 'Site Office — Yelahanka (DQS)',
           address: {
             '@type': 'PostalAddress',
-            streetAddress: 'Godrej Ascend, Kolshet Road, Dhokali, Thane West',
-            addressLocality: 'Thane',
-            addressRegion: 'Maharashtra',
+            streetAddress: 'YNT 63, Survey No. 5/3 & 6/1, Mandalakunte Village, Chikkabommasandra, Yelahanka Hobli, Near Mother Dairy',
+            addressLocality: 'Bengaluru',
+            addressRegion: 'Karnataka',
+            postalCode: '560065',
             addressCountry: 'IN',
           },
         },

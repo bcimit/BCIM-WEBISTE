@@ -8,7 +8,6 @@ const CLIENTS = [
   'Brigade Enterprises',
   'Salarpuria Sattva',
   'Embassy Group',
-  'Godrej Properties',
   'Puravankara',
   'Sobha Limited',
   'Total Environment',

@@ -9,7 +9,7 @@ const TIMELINE = [
   { year: '2018', event: 'BCIM Engineering Private Limited established in Bengaluru for civil construction contract works across real estate and infrastructure.' },
   { year: 'Since', event: 'Delivered commercial projects for Divyasree Developers and LOCL across Hyderabad and Bengaluru.' },
   { year: 'Certified', event: 'ISO 9001:2015, ISO 14001:2015 and ISO 45001:2018 — integrated management systems across every site.' },
-  { year: 'Now', event: 'Ongoing projects for Divyasree Developers, Godrej Properties and Curated Living Solutions across Hyderabad and Thane.' },
+  { year: 'Now', event: 'Ongoing projects for Divyasree Developers and Curated Living Solutions across Hyderabad and Visakhapatnam.' },
 ]
 
 const VALUES = [

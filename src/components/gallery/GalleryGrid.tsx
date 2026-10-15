@@ -47,20 +47,6 @@ const PROJECT_GROUPS: ProjectGroup[] = [
     ],
   },
   {
-    id: 'godrej-ascend',
-    name: 'Godrej Ascend',
-    location: 'Kolshet Road, Thane, Maharashtra',
-    department: 'Residential Construction',
-    status: 'Ongoing',
-    images: [
-      { src: '/images/gallery/godrej-ascend-01.jpg',          caption: 'Godrej Ascend — residential tower elevation' },
-      { src: '/images/gallery/godrej-ascend-02.jpg',          caption: 'Godrej Ascend — tower façade, Thane' },
-      { src: '/images/gallery/godrej-ascend-progress-01.jpg', caption: 'Tower 4 — structural works in progress' },
-      { src: '/images/gallery/godrej-ascend-progress-02.jpg', caption: 'Tower 4 — upper-floor progress' },
-      { src: '/images/gallery/godrej-ascend-progress-03.jpg', caption: 'Tower 5 and MLCP — slab works' },
-    ],
-  },
-  {
     id: 'clspl-hostel',
     name: 'CLSPL Hostel (Ivy League House)',
     location: 'AMTZ Campus, Visakhapatnam, Andhra Pradesh',

@@ -5,7 +5,6 @@ export const metadata: Metadata = { title: 'Gallery' }
 
 const PHOTOS = [
   { id: 1, src: '1486325212136-afb4a73e7a9b', caption: 'Techridge Park Phase 3', cat: 'Commercial' },
-  { id: 2, src: '1600596542815-ffad4c1539a9', caption: 'Godrej Ascend Residences', cat: 'Residential' },
   { id: 3, src: '1497366216548-37526070297c', caption: 'Trinity Business Park', cat: 'Commercial' },
   { id: 4, src: '1541888946425-d81bb19240f5', caption: 'Divyasree Omega Corporate', cat: 'Commercial' },
   { id: 5, src: '1564013799919-ab600027ffc6', caption: 'Verdant Villa Enclave', cat: 'Residential' },

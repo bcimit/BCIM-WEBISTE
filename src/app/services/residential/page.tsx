@@ -11,7 +11,7 @@ const DATA = {
   color: 'from-emerald-600 to-teal-700',
   eyebrow: 'Residential Construction',
   title: 'Homes Built with Care, Craft and Precision',
-  intro: 'BCIM Engineering brings the same rigour and quality management to every residential project — from foundation works on premium apartment towers to hostel and community developments.',
+  intro: 'BCIM Engineering brings the same rigour and quality management to every residential project — from premium apartment towers to hostel and community developments.',
   capabilities: [
     { title: 'Luxury Villas & Bungalows', desc: 'Custom-designed villas from 3,000 to 12,000 sq ft with high-end finishes, smart home integration, and landscaped gardens.' },
     { title: 'Premium Apartment Complexes', desc: 'Multi-storey residential towers with amenity decks, basement parking, and premium interior specifications.' },
@@ -28,12 +28,12 @@ const DATA = {
     'ISO 9001:2015-certified quality management',
   ],
   stats: [
-    { value: '2+', label: 'Residential Projects' },
+    { value: '2', label: 'Residential Projects' },
     { value: '3', label: 'States Active' },
     { value: '3', label: 'ISO Certifications' },
   ],
-  image: '/images/projects/godrej-ascend.jpg',
-  projects: ['godrej-ascend'],
+  image: '/images/projects/clspl-vizag.jpg',
+  projects: ['clspl-vizag', 'dqs-yelahanka'],
 }
 
 export default function ResidentialPage() {

@@ -31,7 +31,7 @@ const SERVICES_DETAIL = [
     description: 'Premium living spaces built with meticulous craftsmanship — from single luxury villas to large-scale gated residential communities.',
     items: ['Luxury Villas & Bungalows', 'Premium Apartment Complexes', 'Gated Communities', 'Row Houses & Townhouses', 'Independent Houses', 'Duplex & Penthouse Units'],
     href: '/services/residential',
-    image: '/images/projects/godrej-ascend.jpg',
+    image: '/images/projects/clspl-vizag.jpg',
   },
   {
     id: 'interior',
