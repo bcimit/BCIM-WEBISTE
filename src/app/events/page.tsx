@@ -5,7 +5,7 @@ import { EVENTS, PROGRESS_VIDEO } from '@/lib/company'
 
 export const metadata: Metadata = {
   title: 'Events',
-  description: 'Safety week, training and worker welfare events at BCIM Engineering project sites.',
+  description: 'National Safety Week, first-aid training, health check-ups and worker welfare events at BCIM Engineering project sites, with photos from the Techridge project.',
 }
 
 export default function EventsPage() {

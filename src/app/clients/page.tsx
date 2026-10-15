@@ -4,7 +4,7 @@ import { CLIENTS, PMCS, CONSULTANTS } from '@/lib/company'
 
 export const metadata: Metadata = {
   title: 'Clients & Consultants',
-  description: 'The clients, project management consultants and design consultants BCIM Engineering works with.',
+  description: 'The clients, project management consultants and design consultants BCIM Engineering works with across commercial and residential projects in South India.',
 }
 
 function LogoGrid({ items }: { items: { name: string; image: string }[] }) {

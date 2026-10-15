@@ -4,7 +4,7 @@ import { MD_MESSAGE } from '@/lib/company'
 
 export const metadata: Metadata = {
   title: "Managing Director's Message",
-  description: 'A message from the Managing Director of BCIM Engineering Private Limited.',
+  description: 'A message from the Managing Director of BCIM Engineering Private Limited on the company’s vision, its people and its commitment to timely, on-budget delivery.',
 }
 
 export default function MDMessagePage() {

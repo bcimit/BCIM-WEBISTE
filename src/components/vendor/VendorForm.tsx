@@ -3,7 +3,7 @@
 import { useRef, useState } from 'react'
 import { CheckCircle2, AlertCircle, Loader2, Paperclip, Send } from 'lucide-react'
 
-const field = 'w-full px-4 py-2.5 rounded-xl border border-navy-200 bg-white text-sm text-dark placeholder:text-navy-300 focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/10 transition-colors'
+const field = 'w-full px-4 py-2.5 rounded-xl border border-navy-200 bg-white text-base sm:text-sm text-dark placeholder:text-navy-300 focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/10 transition-colors'
 
 const EMPTY = { company: '', name: '', phone: '', email: '', supply: '' }
 

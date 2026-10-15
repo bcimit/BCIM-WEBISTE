@@ -4,7 +4,7 @@ import { COMPANY } from '@/lib/constants'
 
 export const metadata: Metadata = {
   title: 'Terms of Service',
-  description: 'Terms and conditions governing use of the BCIM Engineering website and services.',
+  description: 'Terms and conditions governing use of the BCIM Engineering Private Limited website and the construction services described on it.',
 }
 
 const LAST_UPDATED = '1 July 2025'

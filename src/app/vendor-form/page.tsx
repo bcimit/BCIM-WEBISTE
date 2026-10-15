@@ -4,7 +4,7 @@ import { VendorForm } from '@/components/vendor/VendorForm'
 
 export const metadata: Metadata = {
   title: 'Vendor Registration',
-  description: 'Register as a vendor or supplier with BCIM Engineering Private Limited.',
+  description: 'Register as a vendor or supplier with BCIM Engineering Private Limited. Share your company details and our procurement team will get in touch.',
 }
 
 export default function VendorFormPage() {

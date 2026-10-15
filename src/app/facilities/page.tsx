@@ -4,7 +4,7 @@ import { FACILITIES } from '@/lib/company'
 
 export const metadata: Metadata = {
   title: 'Facilities',
-  description: 'Site facilities provided by BCIM Engineering: labour camp, R.O. water plant, staff mess and batching plant.',
+  description: 'Site facilities provided by BCIM Engineering Private Limited: labour camp, R.O. water plant, staff mess and canteen, and an on-site concrete batching plant.',
 }
 
 export default function FacilitiesPage() {

@@ -7,7 +7,7 @@ import { ArrowRight } from 'lucide-react'
 
 export const metadata: Metadata = {
   title: 'Sitemap',
-  description: 'Full sitemap of the BCIM Engineering website — find all pages, services, projects, and blog articles.',
+  description: 'Full sitemap of the BCIM Engineering website — find every page, service, project and blog article, plus company, policy and contact pages in one place.',
 }
 
 const SECTIONS = [

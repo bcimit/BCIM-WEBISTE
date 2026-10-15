@@ -29,6 +29,7 @@ export function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false)
   const [servicesOpen, setServicesOpen] = useState(false)
   const [openMenu, setOpenMenu] = useState<string | null>(null)
+  const [mobileSub, setMobileSub] = useState<string | null>(null)
   const [scrolled, setScrolled] = useState(false)
   const isHome = pathname === '/'
 
@@ -40,6 +41,7 @@ export function Navbar() {
 
   useEffect(() => {
     setMobileOpen(false)
+    setMobileSub(null)
   }, [pathname])
 
   const servicesLink = NAV_LINKS.find((l) => l.label === 'Services')
@@ -241,7 +243,7 @@ export function Navbar() {
         {/* Mobile burger */}
         <button
           className={cn(
-            'xl:hidden p-2 transition-colors',
+            'xl:hidden w-11 h-11 -mr-2 flex items-center justify-center transition-colors',
             transparent ? 'text-white hover:text-white/80' : 'text-navy-900 hover:text-primary',
           )}
           onClick={() => setMobileOpen((v) => !v)}
@@ -260,47 +262,64 @@ export function Navbar() {
             animate={{ height: 'auto', opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
             transition={{ duration: 0.2 }}
-            className="xl:hidden bg-white border-t border-navy-100 overflow-hidden"
+            className="xl:hidden bg-white border-t border-navy-100 overflow-y-auto overscroll-contain max-h-[calc(100dvh-72px)]"
           >
             <div className="container-xl py-4 flex flex-col gap-1">
-              {NAV_LINKS.map((link) => (
-                <div key={link.href} className="border-b border-navy-100 last:border-0">
-                  <Link
-                    href={link.href}
-                    className={cn(
-                      'block py-3 px-2 text-[0.9375rem] font-medium transition-colors',
-                      pathname === link.href ? 'text-primary' : 'text-navy-700',
+              {NAV_LINKS.map((link) => {
+                const hasSub = DROPDOWNS.includes(link.label)
+                const subOpen = mobileSub === link.label
+                return (
+                  <div key={link.href} className="border-b border-navy-100 last:border-0">
+                    <div className="flex items-stretch">
+                      <Link
+                        href={link.href}
+                        className={cn(
+                          'flex-1 flex items-center min-h-[48px] px-2 text-[0.9375rem] font-medium transition-colors',
+                          pathname === link.href ? 'text-primary' : 'text-navy-700',
+                        )}
+                      >
+                        {link.label}
+                      </Link>
+                      {hasSub && (
+                        <button
+                          type="button"
+                          onClick={() => setMobileSub(subOpen ? null : link.label)}
+                          aria-expanded={subOpen}
+                          aria-label={`${subOpen ? 'Collapse' : 'Expand'} ${link.label} menu`}
+                          className="w-12 min-h-[48px] flex items-center justify-center text-navy-500"
+                        >
+                          <ChevronDown size={18} className={cn('transition-transform duration-200', subOpen && 'rotate-180')} />
+                        </button>
+                      )}
+                    </div>
+                    {hasSub && subOpen && (
+                      <ul className="pb-2 pl-4 flex flex-col">
+                        {link.children?.map((child) => (
+                          <li key={child.href}>
+                            <Link href={child.href} className="flex items-center min-h-[44px] px-2 text-sm text-navy-500 hover:text-primary">
+                              {child.label}
+                            </Link>
+                          </li>
+                        ))}
+                      </ul>
                     )}
-                  >
-                    {link.label}
-                  </Link>
-                  {DROPDOWNS.includes(link.label) && (
-                    <ul className="pb-2 pl-4 flex flex-col">
-                      {link.children?.map((child) => (
-                        <li key={child.href}>
-                          <Link href={child.href} className="block py-1.5 px-2 text-sm text-navy-500 hover:text-primary">
-                            {child.label}
-                          </Link>
-                        </li>
-                      ))}
-                    </ul>
-                  )}
-                </div>
-              ))}
+                  </div>
+                )
+              })}
               <div className="pt-4 flex flex-col gap-3">
                 <div className="flex gap-2">
                   <a
                     href="https://erp.bcim.in"
                     target="_blank"
                     rel="noreferrer"
-                    className="flex items-center gap-1.5 px-3 py-2 rounded-lg text-sm font-medium text-navy-700 bg-bg border border-navy-100"
+                    className="flex items-center gap-1.5 px-4 min-h-[44px] rounded-lg text-sm font-medium text-navy-700 bg-bg border border-navy-100"
                   >
                     <LogIn size={14} /> ERP Login
                   </a>
                 </div>
                 <a
                   href={COMPANY.phoneHref}
-                  className="flex items-center gap-2 text-sm font-medium text-navy-700"
+                  className="flex items-center gap-2 min-h-[44px] text-sm font-medium text-navy-700"
                 >
                   <Phone size={14} /> {COMPANY.phone}
                 </a>

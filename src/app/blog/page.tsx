@@ -6,7 +6,7 @@ import { BLOG_POSTS } from '@/lib/blog'
 
 export const metadata: Metadata = {
   title: 'Blog',
-  description: 'Construction insights, industry trends, and expert guides from the BCIM Engineering team.',
+  description: 'Construction insights, industry trends and practical guides on commercial and residential building from the BCIM Engineering team in Bengaluru.',
 }
 
 export default function BlogPage() {

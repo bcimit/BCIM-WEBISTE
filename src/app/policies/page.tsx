@@ -5,7 +5,7 @@ import { EHS_POLICY } from '@/lib/company'
 
 export const metadata: Metadata = {
   title: 'Our Policies',
-  description: 'BCIM Engineering’s Environment, Health & Safety policy, and the philosophies behind every project.',
+  description: 'Read BCIM Engineering’s Environment, Health & Safety policy and the four philosophies — quality, schedule, safety and customer satisfaction — behind every project.',
 }
 
 export default function PoliciesPage() {

@@ -40,7 +40,7 @@ export function ContactContent() {
   }
 
   const inputClass = (err?: boolean) =>
-    `w-full px-4 py-3 rounded-xl border text-navy-900 text-sm placeholder:text-navy-400 bg-white outline-none transition-colors focus:border-primary ${err ? 'border-red-400' : 'border-navy-200 hover:border-navy-300'}`
+    `w-full px-4 py-3 rounded-xl border text-navy-900 text-base sm:text-sm placeholder:text-navy-400 bg-white outline-none transition-colors focus:border-primary ${err ? 'border-red-400' : 'border-navy-200 hover:border-navy-300'}`
 
   return (
     <section className="section-py bg-bg">
@@ -60,29 +60,29 @@ export function ContactContent() {
               <form onSubmit={handleSubmit(onSubmit)} noValidate className="space-y-5">
                 <div className="grid sm:grid-cols-2 gap-5">
                   <div>
-                    <label className="block text-xs font-semibold text-navy-700 mb-1.5">Full Name *</label>
-                    <input {...register('name')} placeholder="Ravi Shankar" className={inputClass(!!errors.name)} />
+                    <label htmlFor="contact-name" className="block text-xs font-semibold text-navy-700 mb-1.5">Full Name *</label>
+                    <input id="contact-name" {...register('name')} placeholder="Ravi Shankar" className={inputClass(!!errors.name)} />
                     {errors.name && <p className="text-red-500 text-xs mt-1">{errors.name.message}</p>}
                   </div>
                   <div>
-                    <label className="block text-xs font-semibold text-navy-700 mb-1.5">Phone Number *</label>
-                    <input {...register('phone')} type="tel" placeholder="+91 98765 43210" className={inputClass(!!errors.phone)} />
+                    <label htmlFor="contact-phone" className="block text-xs font-semibold text-navy-700 mb-1.5">Phone Number *</label>
+                    <input id="contact-phone" {...register('phone')} type="tel" placeholder="+91 98765 43210" className={inputClass(!!errors.phone)} />
                     {errors.phone && <p className="text-red-500 text-xs mt-1">{errors.phone.message}</p>}
                   </div>
                 </div>
                 <div>
-                  <label className="block text-xs font-semibold text-navy-700 mb-1.5">Email Address *</label>
-                  <input {...register('email')} type="email" placeholder="ravi@company.com" className={inputClass(!!errors.email)} />
+                  <label htmlFor="contact-email" className="block text-xs font-semibold text-navy-700 mb-1.5">Email Address *</label>
+                  <input id="contact-email" {...register('email')} type="email" placeholder="ravi@company.com" className={inputClass(!!errors.email)} />
                   {errors.email && <p className="text-red-500 text-xs mt-1">{errors.email.message}</p>}
                 </div>
                 <div>
-                  <label className="block text-xs font-semibold text-navy-700 mb-1.5">Subject *</label>
-                  <input {...register('subject')} placeholder="Enquiry for commercial office project" className={inputClass(!!errors.subject)} />
+                  <label htmlFor="contact-subject" className="block text-xs font-semibold text-navy-700 mb-1.5">Subject *</label>
+                  <input id="contact-subject" {...register('subject')} placeholder="Enquiry for commercial office project" className={inputClass(!!errors.subject)} />
                   {errors.subject && <p className="text-red-500 text-xs mt-1">{errors.subject.message}</p>}
                 </div>
                 <div>
-                  <label className="block text-xs font-semibold text-navy-700 mb-1.5">Message *</label>
-                  <textarea {...register('message')} rows={5} placeholder="Tell us about your project — location, type, approximate size, and timeline..." className={inputClass(!!errors.message)} />
+                  <label htmlFor="contact-message" className="block text-xs font-semibold text-navy-700 mb-1.5">Message *</label>
+                  <textarea id="contact-message" {...register('message')} rows={5} placeholder="Tell us about your project — location, type, approximate size, and timeline..." className={inputClass(!!errors.message)} />
                   {errors.message && <p className="text-red-500 text-xs mt-1">{errors.message.message}</p>}
                 </div>
                 <button type="submit" disabled={isSubmitting}

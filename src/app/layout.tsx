@@ -42,9 +42,11 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'BCIM Engineering — Premium Construction Company',
     description: 'ISO-certified construction company delivering premium projects since 2018.',
+    images: ['/og-image.jpg'],
   },
   robots: { index: true, follow: true },
-  metadataBase: new URL('https://bcim.in'),
+  metadataBase: new URL('https://site.bcim.in'),
+  alternates: { canonical: './' },
 }
 
 const LD_JSON = {
@@ -52,13 +54,13 @@ const LD_JSON = {
   '@graph': [
     {
       '@type': ['Organization', 'GeneralContractor'],
-      '@id': 'https://bcim.in/#organization',
+      '@id': 'https://site.bcim.in/#organization',
       name: 'BCIM Engineering Private Limited',
       legalName: 'BCIM Engineering Private Limited',
-      url: 'https://bcim.in',
+      url: 'https://site.bcim.in',
       logo: {
         '@type': 'ImageObject',
-        url: 'https://bcim.in/bcim-logo.png',
+        url: 'https://site.bcim.in/bcim-logo.png',
         width: 260,
         height: 88,
       },
@@ -156,10 +158,10 @@ const LD_JSON = {
     },
     {
       '@type': 'WebSite',
-      '@id': 'https://bcim.in/#website',
-      url: 'https://bcim.in',
+      '@id': 'https://site.bcim.in/#website',
+      url: 'https://site.bcim.in',
       name: 'BCIM Engineering',
-      publisher: { '@id': 'https://bcim.in/#organization' },
+      publisher: { '@id': 'https://site.bcim.in/#organization' },
     },
   ],
 }
