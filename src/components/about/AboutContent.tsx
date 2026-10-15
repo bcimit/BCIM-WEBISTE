@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { CheckCircle2, ArrowRight, Target, Eye, Heart } from 'lucide-react'
 import { BOARD_OF_DIRECTORS, SENIOR_MANAGEMENT } from '@/lib/team'
+import { CompanySuccess } from './CompanySuccess'
 
 const TIMELINE = [
   { year: '2018', event: 'BCIM Engineering Private Limited established in Bengaluru for civil construction contract works across real estate and infrastructure.' },
@@ -39,7 +40,7 @@ export function AboutContent() {
             { icon: Eye, color: 'bg-amber-50 text-amber-600', label: 'Our Vision', text: 'To be the most trusted construction company in South India, known for technical excellence, ethical practices, and a culture of safety.' },
             { icon: Heart, color: 'bg-emerald-50 text-emerald-600', label: 'Our Promise', text: 'Every project we undertake gets the full attention of our senior leadership — from design review to final snag clearance.' },
           ].map(({ icon: Icon, color, label, text }, i) => (
-            <motion.div key={label} {...fadeUp(i * 0.1)} className="p-8 rounded-2xl border border-navy-100 bg-bg">
+            <motion.div key={label} id={label === 'Our Mission' ? 'mission' : label === 'Our Vision' ? 'vision' : undefined} {...fadeUp(i * 0.1)} className="p-8 rounded-2xl border border-navy-100 bg-bg scroll-mt-28">
               <span className={`w-12 h-12 rounded-xl flex items-center justify-center ${color} mb-5`}>
                 <Icon size={22} />
               </span>
@@ -69,8 +70,10 @@ export function AboutContent() {
         </div>
       </section>
 
+      <CompanySuccess />
+
       {/* Leadership */}
-      <section id="leadership" className="section-py bg-white">
+      <section id="leadership" className="section-py bg-white scroll-mt-20">
         <div className="container-xl">
           <motion.div {...fadeUp()} className="text-center mb-14">
             <p className="eyebrow mb-3">Leadership</p>
@@ -86,7 +89,7 @@ export function AboutContent() {
             ))}
           </div>
 
-          <p className="eyebrow text-center mb-6">Senior Management</p>
+          <p id="senior-management" className="eyebrow text-center mb-6 scroll-mt-28">Senior Management</p>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
             {SENIOR_MANAGEMENT.map(({ name, role, experience, bio }, i) => (
               <motion.div key={name} {...fadeUp((i % 3) * 0.06)} className="p-5 rounded-xl border border-navy-100 bg-bg">

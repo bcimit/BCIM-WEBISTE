@@ -48,7 +48,21 @@ export const COMPANY = {
 
 export const NAV_LINKS: NavLink[] = [
   { label: 'Home', href: '/' },
-  { label: 'About', href: '/about' },
+  {
+    label: 'The Company',
+    href: '/about',
+    children: [
+      { label: 'About Us', href: '/about' },
+      { label: 'Vision', href: '/about#vision' },
+      { label: 'Mission', href: '/about#mission' },
+      { label: 'Our Philosophies', href: '/policies' },
+      { label: 'Company Success', href: '/about#company-success' },
+      { label: 'Process Control', href: '/about#process-control' },
+      { label: 'Board of Directors', href: '/about#leadership' },
+      { label: 'Senior Management', href: '/about#senior-management' },
+      { label: 'Managing Director Message', href: '/managing-director-message' },
+    ],
+  },
   {
     label: 'Services',
     href: '/services',
@@ -63,22 +77,23 @@ export const NAV_LINKS: NavLink[] = [
         href: '/services/residential',
         description: 'Villas, apartments & gated communities',
       },
-      {
-        label: 'Interior Fit-Out',
-        href: '/services/interior',
-        description: 'Turnkey interiors for commercial spaces',
-      },
-      {
-        label: 'Pre-Construction Services',
-        href: '/services/pre-construction',
-        description: 'Planning, estimation & value engineering',
-      },
     ],
   },
   { label: 'Projects', href: '/projects' },
   { label: 'Gallery', href: '/gallery' },
   { label: 'Careers', href: '/careers' },
   { label: 'Blog', href: '/blog' },
+  {
+    label: 'Others',
+    href: '/policies',
+    children: [
+      { label: 'Our Policies', href: '/policies' },
+      { label: 'Facilities', href: '/facilities' },
+      { label: 'Clients', href: '/clients' },
+      { label: 'Events', href: '/events' },
+      { label: 'Vendor Form', href: '/vendor-form' },
+    ],
+  },
   { label: 'Contact', href: '/contact' },
 ]
 

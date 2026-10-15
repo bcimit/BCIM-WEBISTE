@@ -74,3 +74,8 @@ export const EVENTS = {
     'First-aid and CPR training, health check-ups at the workmen camp, appreciation of workers, a plantation programme, a drawing and slogan competition, and on-the-job and fire-fighting training.',
   images: Array.from({ length: 15 }, (_, i) => `/images/events/safety-week-${String(i + 1).padStart(2, '0')}.jpg`),
 }
+
+export const PROGRESS_VIDEO = {
+  title: 'Techridge Project — Time-lapse of Progress',
+  url: 'https://sway.cloud.microsoft/mwBCUQhQfeTt4zbD?ref=Link',
+}

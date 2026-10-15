@@ -30,8 +30,6 @@ const SECTIONS = [
       { label: 'Services Overview', href: '/services' },
       { label: 'Commercial Construction', href: '/services/commercial' },
       { label: 'Residential Construction', href: '/services/residential' },
-      { label: 'Interior Fit-Out', href: '/services/interior' },
-      { label: 'Pre-Construction Services', href: '/services/pre-construction' },
     ],
   },
   {

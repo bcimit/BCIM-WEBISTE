@@ -25,8 +25,6 @@ const FOOTER_LINKS = [
     links: [
       { label: 'Commercial Construction', href: '/services/commercial' },
       { label: 'Residential Construction', href: '/services/residential' },
-      { label: 'Interior Fit-Out', href: '/services/interior' },
-      { label: 'Pre-Construction', href: '/services/pre-construction' },
       { label: 'Request a Quote', href: '/request-quote' },
     ],
   },

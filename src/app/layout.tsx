@@ -113,22 +113,6 @@ const LD_JSON = {
               description: 'Luxury villas, premium apartment complexes, and gated communities.',
             },
           },
-          {
-            '@type': 'Offer',
-            itemOffered: {
-              '@type': 'Service',
-              name: 'Interior Fit-Out',
-              description: 'Turnkey interior fit-out for commercial and office spaces.',
-            },
-          },
-          {
-            '@type': 'Offer',
-            itemOffered: {
-              '@type': 'Service',
-              name: 'Pre-Construction Services',
-              description: 'Project planning, cost estimation, and value engineering.',
-            },
-          },
         ],
       },
       location: [

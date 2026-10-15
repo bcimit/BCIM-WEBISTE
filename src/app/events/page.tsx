@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { PageHero } from '@/components/shared/PageHero'
-import { EVENTS } from '@/lib/company'
+import { ArrowRight } from 'lucide-react'
+import { EVENTS, PROGRESS_VIDEO } from '@/lib/company'
 
 export const metadata: Metadata = {
   title: 'Events',
@@ -23,6 +24,15 @@ export default function EventsPage() {
                 className="w-full h-48 object-cover rounded-xl border border-navy-100" />
             ))}
           </div>
+        </div>
+      </section>
+      <section className="section-py bg-bg">
+        <div className="container-xl">
+          <h2 className="text-2xl font-bold text-dark mb-2">Project Progress Video</h2>
+          <p className="text-navy-600 mb-6">{PROGRESS_VIDEO.title}</p>
+          <a href={PROGRESS_VIDEO.url} target="_blank" rel="noopener noreferrer" className="btn-primary text-sm">
+            Watch the Time-lapse <ArrowRight size={14} />
+          </a>
         </div>
       </section>
     </>

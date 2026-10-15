@@ -13,8 +13,6 @@ import {
   ArrowRight,
   Building2,
   Home,
-  Wrench,
-  Clipboard,
   ShieldCheck,
   Download,
   LogIn,
@@ -25,14 +23,13 @@ import { cn } from '@/lib/utils'
 const SERVICE_ICONS: Record<string, React.ElementType> = {
   'Commercial Construction': Building2,
   'Residential Construction': Home,
-  'Interior Fit-Out': Wrench,
-  'Pre-Construction Services': Clipboard,
 }
 
 export function Navbar() {
   const pathname = usePathname()
   const [mobileOpen, setMobileOpen] = useState(false)
   const [servicesOpen, setServicesOpen] = useState(false)
+  const [openMenu, setOpenMenu] = useState<string | null>(null)
   const [scrolled, setScrolled] = useState(false)
   const isHome = pathname === '/'
 
@@ -47,6 +44,11 @@ export function Navbar() {
   }, [pathname])
 
   const servicesLink = NAV_LINKS.find((l) => l.label === 'Services')
+  const DROPDOWNS = ['The Company', 'Others']
+  const DROPDOWN_PATHS: Record<string, string[]> = {
+    'The Company': ['/about', '/managing-director-message'],
+    Others: ['/policies', '/facilities', '/clients', '/events', '/vendor-form'],
+  }
   const transparent = isHome && !scrolled && !mobileOpen
 
   return (
@@ -78,7 +80,54 @@ export function Navbar() {
         {/* Desktop nav */}
         <nav className="hidden lg:flex items-center gap-0.5" aria-label="Main navigation">
           {NAV_LINKS.map((link) =>
-            link.label === 'Services' ? (
+            DROPDOWNS.includes(link.label) ? (
+              <div
+                key={link.href}
+                className="relative"
+                onMouseEnter={() => setOpenMenu(link.label)}
+                onMouseLeave={() => setOpenMenu(null)}
+              >
+                <Link
+                  href={link.href}
+                  aria-haspopup="true"
+                  aria-expanded={openMenu === link.label}
+                  className={cn(
+                    'flex items-center gap-1 px-3 py-2 text-[0.875rem] font-medium rounded-md transition-colors',
+                    DROPDOWN_PATHS[link.label]?.includes(pathname)
+                      ? transparent ? 'text-white' : 'text-primary'
+                      : transparent ? 'text-white/80 hover:text-white' : 'text-navy-700 hover:text-primary',
+                  )}
+                >
+                  {link.label}
+                  <ChevronDown size={13} className={cn('transition-transform duration-200', openMenu === link.label && 'rotate-180')} />
+                </Link>
+                <AnimatePresence>
+                  {openMenu === link.label && (
+                    <motion.div
+                      initial={{ opacity: 0, y: 8, scale: 0.97 }}
+                      animate={{ opacity: 1, y: 0, scale: 1 }}
+                      exit={{ opacity: 0, y: 8, scale: 0.97 }}
+                      transition={{ duration: 0.15, ease: 'easeOut' as const }}
+                      className="absolute top-full left-0 pt-2 w-64"
+                    >
+                      <ul className="bg-white rounded-2xl shadow-[var(--shadow-float)] border border-navy-100 p-2">
+                        {link.children?.map((child) => (
+                          <li key={child.href}>
+                            <Link
+                              href={child.href}
+                              onClick={() => setOpenMenu(null)}
+                              className="block px-4 py-2 rounded-lg text-[0.875rem] text-navy-700 hover:bg-bg hover:text-primary transition-colors"
+                            >
+                              {child.label}
+                            </Link>
+                          </li>
+                        ))}
+                      </ul>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+            ) : link.label === 'Services' ? (
               <div
                 key={link.href}
                 className="relative"
@@ -241,16 +290,28 @@ export function Navbar() {
           >
             <div className="container-xl py-4 flex flex-col gap-1">
               {NAV_LINKS.map((link) => (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  className={cn(
-                    'py-3 px-2 text-[0.9375rem] font-medium border-b border-navy-100 last:border-0 transition-colors',
-                    pathname === link.href ? 'text-primary' : 'text-navy-700',
+                <div key={link.href} className="border-b border-navy-100 last:border-0">
+                  <Link
+                    href={link.href}
+                    className={cn(
+                      'block py-3 px-2 text-[0.9375rem] font-medium transition-colors',
+                      pathname === link.href ? 'text-primary' : 'text-navy-700',
+                    )}
+                  >
+                    {link.label}
+                  </Link>
+                  {DROPDOWNS.includes(link.label) && (
+                    <ul className="pb-2 pl-4 flex flex-col">
+                      {link.children?.map((child) => (
+                        <li key={child.href}>
+                          <Link href={child.href} className="block py-1.5 px-2 text-sm text-navy-500 hover:text-primary">
+                            {child.label}
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
                   )}
-                >
-                  {link.label}
-                </Link>
+                </div>
               ))}
               <div className="pt-4 flex flex-col gap-3">
                 <div className="flex gap-2">

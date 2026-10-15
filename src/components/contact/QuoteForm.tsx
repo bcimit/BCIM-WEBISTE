@@ -13,7 +13,7 @@ const schema = z.object({
   company: z.string().optional(),
   email: z.string().email('Valid email required'),
   phone: z.string().min(10, 'Phone required'),
-  projectType: z.enum(['Commercial', 'Residential', 'Interior Fit-Out', 'Pre-Construction', 'Other'], { message: 'Select project type' }),
+  projectType: z.enum(['Commercial', 'Residential', 'Other'], { message: 'Select project type' }),
   location: z.string().min(2, 'Location required'),
   area: z.string().optional(),
   budget: z.string().optional(),
@@ -115,8 +115,6 @@ export function QuoteForm() {
                     <option value="">Select type…</option>
                     <option>Commercial</option>
                     <option>Residential</option>
-                    <option>Interior Fit-Out</option>
-                    <option>Pre-Construction</option>
                     <option>Other</option>
                   </select>
                   {errors.projectType && <p className="text-red-500 text-xs mt-1">{errors.projectType.message}</p>}

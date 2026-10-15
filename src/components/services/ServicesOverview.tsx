@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import { motion } from 'framer-motion'
-import { ArrowRight, CheckCircle2, Building2, Home, Wrench, Clipboard } from 'lucide-react'
+import { ArrowRight, CheckCircle2, Building2, Home } from 'lucide-react'
 import { PROCESS_STEPS } from '@/lib/constants'
 import { resolveImage } from '@/lib/utils'
 
@@ -32,32 +32,6 @@ const SERVICES_DETAIL = [
     items: ['Luxury Villas & Bungalows', 'Premium Apartment Complexes', 'Gated Communities', 'Row Houses & Townhouses', 'Independent Houses', 'Duplex & Penthouse Units'],
     href: '/services/residential',
     image: '/images/projects/clspl-vizag.jpg',
-  },
-  {
-    id: 'interior',
-    icon: Wrench,
-    color: 'from-violet-600 to-purple-700',
-    bg: 'bg-violet-50',
-    text: 'text-violet-600',
-    title: 'Interior Fit-Out',
-    subtitle: 'Turnkey interiors for commercial spaces',
-    description: 'Complete interior fit-out services for commercial spaces — from bare shell to fully operational, beautifully finished work environments.',
-    items: ['Category A & B Fit-Outs', 'Office Interior Design', 'False Ceiling & Flooring', 'Joinery & Furniture', 'MEP & AV Integration', 'Brand Environment Design'],
-    href: '/services/interior',
-    image: '1497366216548-37526070297c',
-  },
-  {
-    id: 'pre-construction',
-    icon: Clipboard,
-    color: 'from-amber-500 to-orange-600',
-    bg: 'bg-amber-50',
-    text: 'text-amber-600',
-    title: 'Pre-Construction Services',
-    subtitle: 'Planning · Estimation · Value Engineering',
-    description: 'Expert pre-construction advisory to optimise your project scope, budget, and schedule before a single brick is laid.',
-    items: ['Feasibility Studies', 'Detailed Bill of Quantities', 'Value Engineering', 'Schedule Development', 'Contractor Procurement', 'Risk Assessment'],
-    href: '/services/pre-construction',
-    image: '1541888946425-d81bb19240f5',
   },
 ]
 
