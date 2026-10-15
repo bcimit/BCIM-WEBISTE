@@ -15,7 +15,6 @@ import {
   Home,
   ShieldCheck,
   LogIn,
-  Users,
 } from 'lucide-react'
 import { NAV_LINKS, COMPANY } from '@/lib/constants'
 import { cn } from '@/lib/utils'
@@ -237,20 +236,6 @@ export function Navbar() {
             <LogIn size={14} />
             ERP Login
           </a>
-          <a
-            href="https://erp.bcim.in/apps"
-            target="_blank"
-            rel="noreferrer"
-            className={cn(
-              'flex items-center gap-1.5 px-3 py-2 rounded-lg text-[0.8125rem] font-semibold transition-colors whitespace-nowrap',
-              transparent
-                ? 'text-white/80 hover:text-white hover:bg-white/10'
-                : 'text-navy-700 hover:text-primary hover:bg-primary-light',
-            )}
-          >
-            <Users size={14} />
-            Staff Login
-          </a>
         </div>
 
         {/* Mobile burger */}
@@ -311,14 +296,6 @@ export function Navbar() {
                     className="flex items-center gap-1.5 px-3 py-2 rounded-lg text-sm font-medium text-navy-700 bg-bg border border-navy-100"
                   >
                     <LogIn size={14} /> ERP Login
-                  </a>
-                  <a
-                    href="https://erp.bcim.in/apps"
-                    target="_blank"
-                    rel="noreferrer"
-                    className="flex items-center gap-1.5 px-3 py-2 rounded-lg text-sm font-medium text-navy-700 bg-bg border border-navy-100"
-                  >
-                    <Users size={14} /> Staff Login
                   </a>
                 </div>
                 <a
