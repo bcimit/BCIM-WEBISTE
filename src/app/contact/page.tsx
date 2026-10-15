@@ -1,5 +1,7 @@
 import type { Metadata } from 'next'
 import { PageHero } from '@/components/shared/PageHero'
+import { JsonLd } from '@/components/shared/JsonLd'
+import { breadcrumbLd } from '@/lib/site'
 import { ContactContent } from '@/components/contact/ContactContent'
 
 export const metadata: Metadata = {
@@ -10,6 +12,7 @@ export const metadata: Metadata = {
 export default function ContactPage() {
   return (
     <>
+      <JsonLd data={breadcrumbLd([{ name: 'Contact', path: '/contact' }])} />
       <PageHero eyebrow="Get in Touch" title="Let's Start a Conversation"
         description="Tell us about your project and we'll respond promptly with a personalised consultation." />
       <ContactContent />

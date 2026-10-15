@@ -4,6 +4,9 @@ import Link from 'next/link'
 import { MapPin, Calendar, User, Ruler, ArrowLeft, ArrowRight, CheckCircle2 } from 'lucide-react'
 import { PROJECTS } from '@/lib/constants'
 import { resolveImage } from '@/lib/utils'
+import { SiteImage } from '@/components/shared/SiteImage'
+import { JsonLd } from '@/components/shared/JsonLd'
+import { breadcrumbLd } from '@/lib/site'
 
 interface Props { params: Promise<{ id: string }> }
 
@@ -27,8 +30,8 @@ export default async function ProjectDetailPage({ params }: Props) {
   if (!project) notFound()
 
   const others = PROJECTS.filter(p => p.id !== id && p.category === project.category).slice(0, 3)
-  const CAT_COLOR = project.category === 'Commercial' ? 'bg-primary' : 'bg-emerald-600'
-  const STATUS_COLOR = project.status === 'Completed' ? 'bg-emerald-500' : 'bg-amber-500'
+  const CAT_COLOR = project.category === 'Commercial' ? 'bg-primary' : 'bg-emerald-700'
+  const STATUS_COLOR = project.status === 'Completed' ? 'bg-emerald-700' : 'bg-amber-700'
 
   const HIGHLIGHTS = [
     project.scope,
@@ -39,11 +42,11 @@ export default async function ProjectDetailPage({ params }: Props) {
 
   return (
     <>
+      <JsonLd data={breadcrumbLd([{ name: 'Projects', path: '/projects' }, { name: project.name, path: `/projects/${project.id}` }])} />
       {/* Hero */}
       <section className="relative pt-[68px] h-[480px] md:h-[560px] flex items-end overflow-hidden">
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src={resolveImage(project.image, 1800)}
-          alt={project.name} className="absolute inset-0 w-full h-full object-cover" />
+        <SiteImage src={project.image} alt={project.name} sizes="100vw" priority remoteWidth={1600}
+          className="object-cover" />
         <div className="absolute inset-0 bg-gradient-to-t from-dark/90 via-dark/40 to-transparent" />
         <div className="relative z-10 container-xl pb-12 w-full">
           <div className="flex gap-2 mb-4">
@@ -76,19 +79,6 @@ export default async function ProjectDetailPage({ params }: Props) {
                 ))}
               </ul>
             </div>
-            {/* Gallery strip */}
-            <div>
-              <h3 className="text-lg font-bold text-dark mb-4">Project Gallery</h3>
-              <div className="grid grid-cols-3 gap-3">
-                {['1486325212136-afb4a73e7a9b','1497366216548-37526070297c','1541888946425-d81bb19240f5'].map((img, i) => (
-                  <div key={i} className="rounded-xl overflow-hidden aspect-video">
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src={`https://images.unsplash.com/photo-${img}?q=80&w=400&auto=format&fit=crop`}
-                      alt={`${project.name} view ${i+1}`} className="w-full h-full object-cover hover:scale-105 transition-transform duration-500" />
-                  </div>
-                ))}
-              </div>
-            </div>
           </div>
 
           {/* Sidebar */}
@@ -104,7 +94,7 @@ export default async function ProjectDetailPage({ params }: Props) {
                 <div key={label} className="flex items-start gap-3">
                   <Icon size={15} className="text-primary shrink-0 mt-0.5" />
                   <div>
-                    <p className="text-xs text-navy-400">{label}</p>
+                    <p className="text-xs text-navy-500">{label}</p>
                     <p className="text-sm font-semibold text-dark">{value}</p>
                   </div>
                 </div>
@@ -127,14 +117,14 @@ export default async function ProjectDetailPage({ params }: Props) {
             <div className="grid sm:grid-cols-3 gap-6">
               {others.map(p => (
                 <Link key={p.id} href={`/projects/${p.id}`} className="group rounded-2xl overflow-hidden border border-navy-100 bg-white shadow-[var(--shadow-card)] hover:shadow-[var(--shadow-float)] transition-shadow">
-                  <div className="h-40 overflow-hidden">
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src={resolveImage(p.image, 500)}
-                      alt={p.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-600" />
+                  <div className="relative h-40 overflow-hidden">
+                    <SiteImage src={p.image} alt={p.name}
+                      sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw" remoteWidth={500}
+                      className="object-cover group-hover:scale-105 transition-transform duration-600" />
                   </div>
                   <div className="p-4">
                     <h3 className="font-semibold text-dark text-sm leading-snug">{p.name}</h3>
-                    <p className="flex items-center gap-1 text-navy-400 text-xs mt-1.5"><MapPin size={10} />{p.location}</p>
+                    <p className="flex items-center gap-1 text-navy-500 text-xs mt-1.5"><MapPin size={10} />{p.location}</p>
                   </div>
                 </Link>
               ))}

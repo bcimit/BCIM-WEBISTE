@@ -1,16 +1,16 @@
 'use client'
 
-import { useEffect, useRef } from 'react'
+import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { ArrowRight, Phone, Mail, MapPin, ChevronDown } from 'lucide-react'
 import { motion, type Variants } from 'framer-motion'
-import { gsap } from 'gsap'
 import { COMPANY } from '@/lib/constants'
+import { SiteImage } from '@/components/shared/SiteImage'
 
 const WORDS = ['Commercial Spaces', 'Residential Homes', 'Corporate Campuses', 'Gated Communities']
 
 const KPI_DATA = [
-  { value: '7+', label: 'Years Active',          sub: `Since ${COMPANY.founded}` },
+  { value: `${new Date().getFullYear() - COMPANY.founded}+`, label: 'Years Active',          sub: `Since ${COMPANY.founded}` },
   { value: '7',  label: 'Projects Completed',    sub: 'Across 3 States' },
   { value: '750+', label: 'Workforce',           sub: 'Engineers & Workers' },
   { value: '0',  label: 'Lost Time Accidents',   sub: 'Safety First' },
@@ -19,39 +19,27 @@ const KPI_DATA = [
 /* ─── animation variants ─────────────────────────────────────── */
 const EASE: [number, number, number, number] = [0.22, 1, 0.36, 1]
 
-const clipReveal: Variants = {
-  hidden: { y: '110%', opacity: 0 },
-  show:   { y: '0%',   opacity: 1, transition: { duration: 0.85, ease: EASE } },
-}
-
-const fadeBlur: Variants = {
-  hidden: { opacity: 0, filter: 'blur(12px)', y: 16 },
-  show:   { opacity: 1, filter: 'blur(0px)',  y: 0, transition: { duration: 0.9, ease: EASE } },
-}
-
 const staggerContainer = (delay = 0, stagger = 0.12) => ({
   hidden: {},
   show:   { transition: { delayChildren: delay, staggerChildren: stagger } },
 })
 
 export function Hero() {
-  const wordRef   = useRef<HTMLSpanElement>(null)
-  const wordIdx   = useRef(0)
+  const [wordIdx, setWordIdx] = useState(0)
+  const [wordOut, setWordOut] = useState(false)
 
-  /* GSAP word cycling */
+  /* Cycle the headline word with a short fade (CSS transition, no animation library) */
   useEffect(() => {
-    let tl: gsap.core.Timeline
-    const cycleWord = () => {
-      const el = wordRef.current
-      if (!el) return
-      wordIdx.current = (wordIdx.current + 1) % WORDS.length
-      tl = gsap.timeline()
-      tl.to(el,   { opacity: 0, y: -16, duration: 0.35, ease: 'power2.in' })
-        .call(() => { if (el) el.textContent = WORDS[wordIdx.current] })
-        .fromTo(el, { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.5, ease: 'power3.out' })
-    }
-    const interval = setInterval(cycleWord, 2800)
-    return () => { clearInterval(interval); tl?.kill() }
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+    let swap: ReturnType<typeof setTimeout>
+    const interval = setInterval(() => {
+      setWordOut(true)
+      swap = setTimeout(() => {
+        setWordIdx((i) => (i + 1) % WORDS.length)
+        setWordOut(false)
+      }, 350)
+    }, 2800)
+    return () => { clearInterval(interval); clearTimeout(swap) }
   }, [])
 
   return (
@@ -75,10 +63,8 @@ export function Hero() {
       <section className="relative min-h-[100svh] flex items-center overflow-hidden" aria-label="Hero">
 
         {/* Background */}
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src="/images/hero/techridge-p3-20f.jpg" alt="" aria-hidden="true"
-          className="absolute inset-0 w-full h-full object-cover object-center scale-105"
-          style={{ willChange: 'transform' }} />
+        <SiteImage src="/images/hero/techridge-p3-20f.jpg" alt="" sizes="100vw" priority
+          className="object-cover object-center scale-105" />
 
         {/* Overlays */}
         <div className="absolute inset-0 hero-overlay-premium" />
@@ -89,12 +75,7 @@ export function Hero() {
 
         {/* Content */}
         <div className="relative z-10 container-xl w-full pt-32 pb-40 lg:pb-48">
-          <motion.div
-            variants={staggerContainer(0.2, 0.13)}
-            initial="hidden"
-            animate="show"
-            className="max-w-3xl"
-          >
+          <div className="max-w-3xl">
 
             {/* Eyebrow */}
             <div className="flex items-center gap-3 mb-7 overflow-hidden">
@@ -104,67 +85,64 @@ export function Hero() {
                 animate={{ width: 40, opacity: 1 }}
                 transition={{ duration: 0.7, delay: 0.3, ease: 'easeOut' }}
               />
-              <motion.p
-                variants={clipReveal}
-                className="text-[0.6875rem] font-bold uppercase tracking-[0.22em] text-accent"
+              <p
+                className="hero-clip-in text-[0.6875rem] font-bold uppercase tracking-[0.22em] text-accent"
+                style={{ animationDelay: '0.05s' }}
               >
                 {COMPANY.iso} · Est. {COMPANY.founded}
-              </motion.p>
+              </p>
             </div>
 
             {/* H1 line 1 — clip reveal */}
             <div className="overflow-hidden mb-1">
-              <motion.h1
-                variants={clipReveal}
-                className="text-white font-bold text-[2.5rem] sm:text-[3.25rem] lg:text-[4.75rem] leading-[1.04] tracking-[-0.025em]"
+              <h1
+                className="hero-clip-in text-white font-bold text-[2.5rem] sm:text-[3.25rem] lg:text-[4.75rem] leading-[1.04] tracking-[-0.025em]"
+                style={{ animationDelay: '0.08s' }}
               >
                 {"Building Tomorrow's"}
-              </motion.h1>
+              </h1>
             </div>
 
             {/* H1 line 2 — cycling word, clip reveal */}
             <div className="overflow-hidden mb-8">
-              <motion.div variants={clipReveal}>
+              <div className="hero-clip-in" style={{ animationDelay: '0.12s' }}>
                 <span
-                  ref={wordRef}
-                  className="text-gradient-warm font-bold text-[2.5rem] sm:text-[3.25rem] lg:text-[4.75rem] leading-[1.04] tracking-[-0.025em]"
+                  data-out={wordOut}
+                  className="hero-word text-gradient-warm font-bold text-[2.5rem] sm:text-[3.25rem] lg:text-[4.75rem] leading-[1.04] tracking-[-0.025em]"
                   style={{ display: 'inline-block', minWidth: '1px' }}
                 >
-                  {WORDS[0]}
+                  {WORDS[wordIdx]}
                 </span>
-              </motion.div>
+              </div>
             </div>
 
             {/* Subtitle — blur reveal */}
-            <motion.p
-              variants={fadeBlur}
-              className="text-white/60 text-lg leading-relaxed max-w-xl mb-10"
+            <p
+              className="hero-fade-in text-white/60 text-lg leading-relaxed max-w-xl mb-10"
+              style={{ animationDelay: '0.15s' }}
             >
               ISO-certified construction contractor delivering premium commercial and residential
               projects across Karnataka, Telangana and Andhra Pradesh since {COMPANY.founded}.
-            </motion.p>
+            </p>
 
             {/* Buttons */}
-            <motion.div
-              variants={staggerContainer(0, 0.08)}
-              className="flex flex-wrap gap-3"
-            >
-              <motion.div variants={clipReveal}>
+            <div className="flex flex-wrap gap-3">
+              <div className="hero-clip-in" style={{ animationDelay: '0.2s' }}>
                 <Link
                   href="/projects"
                   className="flex items-center gap-2 px-7 py-3.5 bg-white text-dark font-semibold text-[0.9375rem] rounded-lg hover:bg-white/90 transition-all shadow-lg"
                 >
                   Explore Projects <ArrowRight size={16} />
                 </Link>
-              </motion.div>
-              <motion.div variants={clipReveal}>
+              </div>
+              <div className="hero-clip-in" style={{ animationDelay: '0.26s' }}>
                 <Link href="/contact" className="btn-outline">
                   Contact Us
                 </Link>
-              </motion.div>
-            </motion.div>
+              </div>
+            </div>
 
-          </motion.div>
+          </div>
 
           {/* KPI Glass Cards */}
           <motion.div

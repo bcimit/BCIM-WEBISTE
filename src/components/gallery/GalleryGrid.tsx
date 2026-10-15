@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { X, ZoomIn, MapPin } from 'lucide-react'
 import { resolveImage } from '@/lib/utils'
 import { Tilt3D } from '@/components/shared/Tilt3D'
+import { SiteImage } from '@/components/shared/SiteImage'
 
 interface GalleryImage {
   src: string
@@ -169,7 +170,7 @@ export function GalleryGrid() {
                     <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-[0.6875rem] font-bold border ${STATUS_STYLES[group.status] ?? STATUS_STYLE_FALLBACK}`}>
                       {group.status}
                     </span>
-                    <span className="text-[0.6875rem] font-bold uppercase tracking-widest text-navy-400">
+                    <span className="text-[0.6875rem] font-bold uppercase tracking-widest text-navy-500">
                       {group.department}
                     </span>
                   </div>
@@ -179,7 +180,7 @@ export function GalleryGrid() {
                     {group.location}
                   </p>
                 </div>
-                <span className="text-xs text-navy-400 shrink-0">
+                <span className="text-xs text-navy-500 shrink-0">
                   {group.images.length} photo{group.images.length !== 1 ? 's' : ''}
                 </span>
               </div>
@@ -205,13 +206,15 @@ export function GalleryGrid() {
                       className="group relative rounded-xl overflow-hidden cursor-pointer shadow-[var(--shadow-card)] hover:shadow-[var(--shadow-float)] transition-shadow duration-300"
                     >
                       <div onClick={() => setLightbox({ ...img, groupName: group.name })}>
-                        {/* eslint-disable-next-line @next/next/no-img-element */}
-                        <img
-                          src={resolveImage(img.src, 700)}
-                          alt={img.caption}
-                          loading="lazy"
-                          className="w-full aspect-[4/3] object-cover group-hover:scale-105 transition-transform duration-500"
-                        />
+                        <div className="relative w-full aspect-[4/3] overflow-hidden">
+                          <SiteImage
+                            src={img.src}
+                            alt={img.caption}
+                            sizes="(min-width: 1024px) 25vw, (min-width: 640px) 33vw, 50vw"
+                            remoteWidth={700}
+                            className="object-cover group-hover:scale-105 transition-transform duration-500"
+                          />
+                        </div>
                         {/* Hover overlay */}
                         <div className="absolute inset-0 bg-dark/0 group-hover:bg-dark/45 transition-colors duration-300 flex items-center justify-center">
                           <ZoomIn className="text-white opacity-0 group-hover:opacity-100 transition-opacity" size={22} />
@@ -260,7 +263,7 @@ export function GalleryGrid() {
             >
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
-                src={resolveImage(lightbox.src, 1600)}
+                src={lightbox.src.startsWith('/') ? `/_next/image?url=${encodeURIComponent(lightbox.src)}&w=1920&q=75` : resolveImage(lightbox.src, 1600)}
                 alt={lightbox.caption}
                 className="w-full rounded-2xl max-h-[78vh] object-contain"
               />

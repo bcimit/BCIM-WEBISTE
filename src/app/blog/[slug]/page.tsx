@@ -3,6 +3,8 @@ import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import { ArrowLeft, Clock, Tag, ArrowRight } from 'lucide-react'
 import { BLOG_POSTS } from '@/lib/blog'
+import { JsonLd } from '@/components/shared/JsonLd'
+import { SITE_URL, ORG_ID, breadcrumbLd } from '@/lib/site'
 
 interface Props { params: Promise<{ slug: string }> }
 
@@ -40,8 +42,21 @@ export default async function BlogPostPage({ params }: Props) {
 
   const related = BLOG_POSTS.filter(p => p.slug !== slug).slice(0, 3)
 
+  const postLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BlogPosting',
+    headline: post.title,
+    description: post.excerpt,
+    datePublished: post.date,
+    author: { '@type': 'Organization', name: post.author },
+    publisher: { '@id': ORG_ID },
+    image: `https://images.unsplash.com/photo-${post.image}?q=80&w=1200&auto=format&fit=crop`,
+    mainEntityOfPage: `${SITE_URL}/blog/${post.slug}`,
+  }
+
   return (
     <>
+      <JsonLd data={[postLd, breadcrumbLd([{ name: 'Blog', path: '/blog' }, { name: post.title, path: `/blog/${post.slug}` }])]} />
       {/* Hero */}
       <section className="relative pt-[68px] h-[400px] flex items-end overflow-hidden">
         {/* eslint-disable-next-line @next/next/no-img-element */}

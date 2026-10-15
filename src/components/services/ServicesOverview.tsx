@@ -5,6 +5,7 @@ import { motion } from 'framer-motion'
 import { ArrowRight, CheckCircle2, Building2, Home } from 'lucide-react'
 import { PROCESS_STEPS } from '@/lib/constants'
 import { resolveImage } from '@/lib/utils'
+import { SiteImage } from '@/components/shared/SiteImage'
 
 const SERVICES_DETAIL = [
   {
@@ -55,9 +56,9 @@ export function ServicesOverview() {
               className="group rounded-2xl border border-navy-100 overflow-hidden shadow-[var(--shadow-card)] hover:shadow-[var(--shadow-float)] transition-shadow duration-300 bg-white"
             >
               <div className="relative h-52 overflow-hidden">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={resolveImage(image, 800)} alt={title}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+                <SiteImage src={image} alt={title}
+                  sizes="(min-width: 1024px) 50vw, 100vw" remoteWidth={800}
+                  className="object-cover group-hover:scale-105 transition-transform duration-700" />
                 <div className="absolute inset-0 bg-gradient-to-t from-dark/60 to-transparent" />
                 <span className={`absolute top-4 left-4 w-10 h-10 rounded-xl bg-gradient-to-br ${color} flex items-center justify-center shadow-lg`}>
                   <Icon size={18} className="text-white" />
@@ -75,7 +76,7 @@ export function ServicesOverview() {
                   ))}
                 </ul>
                 <Link href={href} className={`inline-flex items-center gap-2 mt-6 text-sm font-semibold ${text} hover:gap-3 transition-all`}>
-                  Learn More <ArrowRight size={14} />
+                  Learn More<span className="sr-only"> about {title}</span> <ArrowRight size={14} />
                 </Link>
               </div>
             </motion.div>

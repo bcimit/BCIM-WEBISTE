@@ -2,6 +2,8 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { ArrowRight, Clock, Tag } from 'lucide-react'
 import { PageHero } from '@/components/shared/PageHero'
+import { JsonLd } from '@/components/shared/JsonLd'
+import { breadcrumbLd } from '@/lib/site'
 import { BLOG_POSTS } from '@/lib/blog'
 
 export const metadata: Metadata = {
@@ -14,6 +16,7 @@ export default function BlogPage() {
 
   return (
     <>
+      <JsonLd data={breadcrumbLd([{ name: 'Blog', path: '/blog' }])} />
       <PageHero eyebrow="Insights & Guides" title="Construction Knowledge Hub"
         description="Expert perspectives on commercial and residential construction, industry trends, and project management best practices." />
 
@@ -52,7 +55,7 @@ export default function BlogPage() {
               <article key={post.slug} className="group flex flex-col rounded-2xl overflow-hidden border border-navy-100 bg-white shadow-[var(--shadow-card)] hover:shadow-[var(--shadow-float)] transition-shadow">
                 <div className="relative h-48 overflow-hidden">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={`https://images.unsplash.com/photo-${post.image}?q=80&w=600&auto=format&fit=crop`}
+                  <img loading="lazy" decoding="async" src={`https://images.unsplash.com/photo-${post.image}?q=80&w=600&auto=format&fit=crop`}
                     alt={post.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
                   <span className="absolute top-3 left-3 px-2.5 py-1 rounded-full bg-primary/90 text-white text-[0.625rem] font-bold">{post.category}</span>
                 </div>

@@ -1,5 +1,7 @@
 import type { Metadata } from 'next'
 import { PageHero } from '@/components/shared/PageHero'
+import { JsonLd } from '@/components/shared/JsonLd'
+import { breadcrumbLd } from '@/lib/site'
 import { AboutContent } from '@/components/about/AboutContent'
 
 export const metadata: Metadata = {
@@ -10,6 +12,7 @@ export const metadata: Metadata = {
 export default function AboutPage() {
   return (
     <>
+      <JsonLd data={breadcrumbLd([{ name: 'About Us', path: '/about' }])} />
       <PageHero
         eyebrow="About BCIM Engineering"
         title="Building South India's Future, One Project at a Time"

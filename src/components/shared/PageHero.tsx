@@ -1,4 +1,5 @@
 import { resolveImage } from '@/lib/utils'
+import { SiteImage } from '@/components/shared/SiteImage'
 
 interface PageHeroProps {
   eyebrow?: string
@@ -20,13 +21,7 @@ export function PageHero({
   if (dark && image) {
     return (
       <section className="relative pt-[68px] h-[380px] md:h-[440px] flex items-end overflow-hidden">
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src={resolveImage(image, 1800)}
-          alt=""
-          aria-hidden="true"
-          className="absolute inset-0 w-full h-full object-cover"
-        />
+        <SiteImage src={image} alt="" sizes="100vw" priority remoteWidth={1600} className="object-cover" />
         {overlay && <div className="absolute inset-0 bg-dark/75" />}
         <div className="relative z-10 container-xl pb-14 pt-8 w-full">
           {eyebrow && <p className="eyebrow text-primary mb-3">{eyebrow}</p>}

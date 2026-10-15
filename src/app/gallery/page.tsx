@@ -1,5 +1,7 @@
 import type { Metadata } from 'next'
 import { PageHero } from '@/components/shared/PageHero'
+import { JsonLd } from '@/components/shared/JsonLd'
+import { breadcrumbLd } from '@/lib/site'
 import { GalleryGrid } from '@/components/gallery/GalleryGrid'
 
 export const metadata: Metadata = {
@@ -10,6 +12,7 @@ export const metadata: Metadata = {
 export default function GalleryPage() {
   return (
     <>
+      <JsonLd data={breadcrumbLd([{ name: 'Gallery', path: '/gallery' }])} />
       <PageHero
         eyebrow="Project Gallery"
         title="Our Work in Pictures"

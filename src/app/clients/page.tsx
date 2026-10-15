@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { PageHero } from '@/components/shared/PageHero'
 import { CLIENTS, PMCS, CONSULTANTS } from '@/lib/company'
+import { SiteImage } from '@/components/shared/SiteImage'
 
 export const metadata: Metadata = {
   title: 'Clients & Consultants',
@@ -12,8 +13,9 @@ function LogoGrid({ items }: { items: { name: string; image: string }[] }) {
     <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-5">
       {items.map(({ name, image }) => (
         <div key={name} className="rounded-2xl border border-navy-100 bg-white p-5 flex flex-col items-center gap-3">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={image} alt={name} loading="lazy" className="h-20 w-full object-contain" />
+          <div className="relative h-20 w-full">
+            <SiteImage src={image} alt={name} sizes="(min-width: 1024px) 20vw, 40vw" className="object-contain" />
+          </div>
           <span className="text-xs font-semibold text-navy-600 text-center">{name}</span>
         </div>
       ))}

@@ -6,6 +6,7 @@ import { ArrowRight, CheckCircle2 } from 'lucide-react'
 import { PROJECTS } from '@/lib/constants'
 import { resolveImage } from '@/lib/utils'
 import { MapPin } from 'lucide-react'
+import { SiteImage } from '@/components/shared/SiteImage'
 
 interface ServiceDetailData {
   color: string
@@ -38,12 +39,12 @@ export function ServiceDetail({ data }: { data: ServiceDetailData }) {
           <div className="lg:col-span-2">
             <motion.p {...fadeUp()} className="text-navy-600 text-lg leading-relaxed mb-8">{data.intro}</motion.p>
             <motion.div {...fadeUp(0.08)}>
-              <h3 className="font-bold text-dark text-lg mb-5">What We Deliver</h3>
+              <h2 className="font-bold text-dark text-lg mb-5">What We Deliver</h2>
               <div className="grid sm:grid-cols-2 gap-5">
                 {data.capabilities.map(({ title, desc }, i) => (
                   <motion.div key={title} {...fadeUp(0.04 + i * 0.05)}
                     className="p-5 rounded-xl border border-navy-100 bg-bg hover:border-primary/30 transition-colors">
-                    <h4 className="font-semibold text-dark text-sm mb-1.5">{title}</h4>
+                    <h3 className="font-semibold text-dark text-sm mb-1.5">{title}</h3>
                     <p className="text-navy-500 text-xs leading-relaxed">{desc}</p>
                   </motion.div>
                 ))}
@@ -55,7 +56,7 @@ export function ServiceDetail({ data }: { data: ServiceDetailData }) {
           <div className="flex flex-col gap-6">
             {/* Why BCIM */}
             <motion.div {...fadeUp(0.15)} className="rounded-2xl border border-navy-100 bg-bg p-6">
-              <h4 className="font-bold text-dark mb-4">The BCIM Difference</h4>
+              <h2 className="font-bold text-dark mb-4">The BCIM Difference</h2>
               <ul className="flex flex-col gap-3">
                 {data.differentiators.map(item => (
                   <li key={item} className="flex items-start gap-2.5">
@@ -68,7 +69,7 @@ export function ServiceDetail({ data }: { data: ServiceDetailData }) {
 
             {/* CTA */}
             <motion.div {...fadeUp(0.2)} className={`rounded-2xl bg-gradient-to-br ${data.color} p-6 text-white`}>
-              <h4 className="font-bold text-lg mb-2">Ready to Start?</h4>
+              <h2 className="font-bold text-lg mb-2">Ready to Start?</h2>
               <p className="text-white/80 text-sm mb-5">Get a detailed proposal for your project.</p>
               <Link href="/contact" className="flex items-center gap-2 px-5 py-2.5 bg-white/15 hover:bg-white/25 rounded-lg font-semibold text-sm transition-colors">
                 Contact Us <ArrowRight size={14} />
@@ -91,9 +92,9 @@ export function ServiceDetail({ data }: { data: ServiceDetailData }) {
                 <motion.article key={p.id} {...fadeUp(i * 0.08)}
                   className="group bg-white rounded-2xl overflow-hidden border border-navy-100 shadow-[var(--shadow-card)] hover:shadow-[var(--shadow-float)] transition-shadow">
                   <div className="relative h-44 overflow-hidden">
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src={resolveImage(p.image, 600)}
-                      alt={p.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-600" />
+                    <SiteImage src={p.image} alt={p.name}
+                      sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw" remoteWidth={600}
+                      className="object-cover group-hover:scale-105 transition-transform duration-600" />
                   </div>
                   <div className="p-5">
                     <h3 className="font-semibold text-dark text-sm">{p.name}</h3>

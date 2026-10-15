@@ -1,5 +1,7 @@
 import type { Metadata } from 'next'
 import { PageHero } from '@/components/shared/PageHero'
+import { JsonLd } from '@/components/shared/JsonLd'
+import { breadcrumbLd } from '@/lib/site'
 import { ProjectsGrid } from '@/components/projects/ProjectsGrid'
 
 export const metadata: Metadata = {
@@ -10,6 +12,7 @@ export const metadata: Metadata = {
 export default function ProjectsPage() {
   return (
     <>
+      <JsonLd data={breadcrumbLd([{ name: 'Projects', path: '/projects' }])} />
       <PageHero
         eyebrow="Our Portfolio"
         title="Projects We're Proud Of"

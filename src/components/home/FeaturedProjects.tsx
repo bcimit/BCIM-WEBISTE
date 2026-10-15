@@ -7,15 +7,16 @@ import { MapPin, ArrowRight, ArrowUpRight } from 'lucide-react'
 import { PROJECTS } from '@/lib/constants'
 import { resolveImage } from '@/lib/utils'
 import { Tilt3D } from '@/components/shared/Tilt3D'
+import { SiteImage } from '@/components/shared/SiteImage'
 
 const CATEGORY_COLORS: Record<string, string> = {
   Commercial: 'bg-primary',
-  Residential: 'bg-emerald-600',
+  Residential: 'bg-emerald-700',
 }
 
 const STATUS_COLORS: Record<string, string> = {
-  Completed: 'bg-emerald-500',
-  Ongoing: 'bg-amber-500',
+  Completed: 'bg-emerald-700',
+  Ongoing: 'bg-amber-700',
 }
 
 const FILTERS = ['All', 'Commercial', 'Residential', 'Ongoing', 'Completed'] as const
@@ -97,12 +98,12 @@ export function FeaturedProjects() {
                 <Tilt3D intensity={7} glowColor="rgba(37,99,235,0.18)" className="bg-white rounded-2xl overflow-hidden border border-navy-100 shadow-[var(--shadow-card)] hover:shadow-[var(--shadow-float)] transition-shadow duration-300 group">
                 {/* Image */}
                 <div className="relative h-52 overflow-hidden">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
-                    src={resolveImage(project.image, 600)}
+                  <SiteImage
+                    src={project.image}
                     alt={project.name}
-                    loading="lazy"
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-600"
+                    sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+                    remoteWidth={600}
+                    className="object-cover group-hover:scale-105 transition-transform duration-600"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-dark/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
@@ -132,7 +133,7 @@ export function FeaturedProjects() {
                   <h3 className="font-semibold text-dark text-[0.9375rem] leading-snug">
                     {project.name}
                   </h3>
-                  <p className="flex items-center gap-1.5 text-navy-400 text-xs mt-2">
+                  <p className="flex items-center gap-1.5 text-navy-500 text-xs mt-2">
                     <MapPin size={11} /> {project.location}
                   </p>
                   {project.area && (

@@ -5,6 +5,7 @@ import { motion } from 'framer-motion'
 import { CheckCircle2, ArrowRight, Target, Eye, Heart } from 'lucide-react'
 import { BOARD_OF_DIRECTORS, SENIOR_MANAGEMENT } from '@/lib/team'
 import { CompanySuccess } from './CompanySuccess'
+import { SiteImage } from '@/components/shared/SiteImage'
 
 const TIMELINE = [
   { year: '2018', event: 'BCIM Engineering Private Limited established in Bengaluru for civil construction contract works for commercial and residential real estate.' },
@@ -148,8 +149,9 @@ export function AboutContent() {
               { src: '/images/certifications/national-safety-council.jpg', caption: 'National Safety Council — Membership Certificate' },
             ].map(({ src, caption }, i) => (
               <motion.div key={src} {...fadeUp(i * 0.1)} className="rounded-2xl overflow-hidden border border-white/10 bg-white/5">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={src} alt={caption} className="w-full h-64 object-contain bg-white p-4" />
+                <div className="relative w-full h-64 bg-white">
+                  <SiteImage src={src} alt={caption} sizes="(min-width: 768px) 50vw, 100vw" className="object-contain p-4" />
+                </div>
                 <p className="text-navy-400 text-xs text-center p-3 border-t border-white/10">{caption}</p>
               </motion.div>
             ))}
@@ -172,8 +174,9 @@ export function AboutContent() {
               { src: '/images/awards/safety-award-ceremony-2.jpg', caption: 'BCIM Engineering — Techridge P3 team' },
             ].map(({ src, caption }, i) => (
               <motion.div key={src} {...fadeUp(i * 0.08)} className="rounded-2xl overflow-hidden border border-navy-100 shadow-[var(--shadow-card)]">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={src} alt={caption} className="w-full h-48 object-cover" />
+                <div className="relative w-full h-48">
+                  <SiteImage src={src} alt={caption} sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw" className="object-cover" />
+                </div>
                 <p className="text-navy-500 text-xs text-center p-3">{caption}</p>
               </motion.div>
             ))}

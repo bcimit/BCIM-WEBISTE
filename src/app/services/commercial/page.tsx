@@ -1,6 +1,8 @@
 import type { Metadata } from 'next'
 import { PageHero } from '@/components/shared/PageHero'
 import { ServiceDetail } from '@/components/services/ServiceDetail'
+import { JsonLd } from '@/components/shared/JsonLd'
+import { SITE_URL, ORG_ID, breadcrumbLd } from '@/lib/site'
 
 export const metadata: Metadata = {
   title: 'Commercial Construction',
@@ -30,6 +32,19 @@ const DATA = {
 export default function CommercialPage() {
   return (
     <>
+      <JsonLd data={[
+        {
+          '@context': 'https://schema.org',
+          '@type': 'Service',
+          name: 'Commercial Construction',
+          description: metadata.description,
+          serviceType: 'Commercial Construction',
+          provider: { '@id': ORG_ID },
+          areaServed: ['Karnataka', 'Telangana', 'Andhra Pradesh'],
+          url: `${SITE_URL}/services/commercial`,
+        },
+        breadcrumbLd([{ name: 'Services', path: '/services' }, { name: 'Commercial Construction', path: '/services/commercial' }]),
+      ]} />
       <PageHero eyebrow="Our Services" title="Commercial Construction" image={DATA.image} dark
         description="Grade-A offices and IT parks — built on time, within budget." />
       <ServiceDetail data={DATA} />

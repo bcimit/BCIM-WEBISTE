@@ -1,6 +1,8 @@
 import type { Metadata } from 'next'
 import { PageHero } from '@/components/shared/PageHero'
 import { CareersContent } from '@/components/careers/CareersContent'
+import { JsonLd } from '@/components/shared/JsonLd'
+import { breadcrumbLd } from '@/lib/site'
 import { fetchERPJobs } from '@/lib/erp'
 
 export const revalidate = 300
@@ -15,6 +17,7 @@ export default async function CareersPage() {
 
   return (
     <>
+      <JsonLd data={breadcrumbLd([{ name: 'Careers', path: '/careers' }])} />
       <PageHero eyebrow="Careers at BCIM" title="Build Your Career With Us"
         description="We are always looking for talented, driven construction professionals to join our growing team across Bengaluru, Hyderabad and beyond."
         image="1504307651254-35680f356dfd" dark />

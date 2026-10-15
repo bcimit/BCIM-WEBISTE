@@ -7,12 +7,13 @@ import { MapPin, ArrowRight } from 'lucide-react'
 import { PROJECTS } from '@/lib/constants'
 import { resolveImage } from '@/lib/utils'
 import { Tilt3D } from '@/components/shared/Tilt3D'
+import { SiteImage } from '@/components/shared/SiteImage'
 
 const STATUS_FILTERS = ['All', 'Ongoing', 'Completed'] as const
 const CAT_FILTERS = ['All', 'Commercial', 'Residential'] as const
 
-const CAT_COLORS: Record<string, string> = { Commercial: 'bg-primary', Residential: 'bg-emerald-600' }
-const STATUS_COLORS: Record<string, string> = { Completed: 'bg-emerald-500', Ongoing: 'bg-amber-500' }
+const CAT_COLORS: Record<string, string> = { Commercial: 'bg-primary', Residential: 'bg-emerald-700' }
+const STATUS_COLORS: Record<string, string> = { Completed: 'bg-emerald-700', Ongoing: 'bg-amber-700' }
 
 export function ProjectsGrid() {
   const [status, setStatus] = useState<(typeof STATUS_FILTERS)[number]>('All')
@@ -55,10 +56,9 @@ export function ProjectsGrid() {
               >
                 <Tilt3D intensity={7} glowColor="rgba(37,99,235,0.18)" className="group bg-white rounded-2xl overflow-hidden border border-navy-100 shadow-[var(--shadow-card)] hover:shadow-[var(--shadow-float)] transition-shadow duration-300">
                 <div className="relative h-52 overflow-hidden">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={resolveImage(p.image, 700)}
-                    alt={p.name} loading="lazy"
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-600" />
+                  <SiteImage src={p.image} alt={p.name}
+                    sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw" remoteWidth={700}
+                    className="object-cover group-hover:scale-105 transition-transform duration-600" />
                   <span className={`absolute top-3 left-3 px-2.5 py-1 rounded-full text-white text-[0.6875rem] font-bold ${CAT_COLORS[p.category] ?? 'bg-navy-700'}`}>{p.category}</span>
                   <span className={`absolute top-3 right-3 px-2 py-0.5 rounded-full text-white text-[0.625rem] font-bold ${STATUS_COLORS[p.status] ?? 'bg-navy-700'}`}>{p.status}</span>
                   <Link href={`/projects/${p.id}`} aria-label={`View ${p.name}`}
@@ -67,11 +67,11 @@ export function ProjectsGrid() {
                   </Link>
                 </div>
                 <div className="p-5">
-                  <h3 className="font-semibold text-dark leading-snug">{p.name}</h3>
-                  <p className="flex items-center gap-1.5 text-navy-400 text-xs mt-2"><MapPin size={11} />{p.location}</p>
+                  <h2 className="font-semibold text-dark leading-snug">{p.name}</h2>
+                  <p className="flex items-center gap-1.5 text-navy-500 text-xs mt-2"><MapPin size={11} />{p.location}</p>
                   <p className="text-navy-500 text-xs mt-2">Client: <span className="text-navy-700 font-medium">{p.client}</span></p>
                   {p.area && <p className="text-navy-500 text-xs mt-1"><span className="text-navy-700 font-medium">{p.area}</span> built-up area</p>}
-                  <p className="text-navy-400 text-xs mt-1.5 leading-snug line-clamp-2">{p.scope}</p>
+                  <p className="text-navy-500 text-xs mt-1.5 leading-snug line-clamp-2">{p.scope}</p>
                 </div>
                 </Tilt3D>
               </motion.article>
@@ -80,7 +80,7 @@ export function ProjectsGrid() {
         </div>
 
         {filtered.length === 0 && (
-          <p className="text-center text-navy-400 py-20">No projects match the selected filters.</p>
+          <p className="text-center text-navy-500 py-20">No projects match the selected filters.</p>
         )}
       </div>
     </section>

@@ -133,7 +133,7 @@ export function Footer() {
 
       {/* Bottom bar */}
       <div className="border-t border-white/5">
-        <div className="container-xl py-5 flex flex-col sm:flex-row items-center justify-between gap-2 text-[0.75rem] text-navy-500">
+        <div className="container-xl py-5 flex flex-col sm:flex-row items-center justify-between gap-2 text-[0.75rem] text-navy-400">
           <span>© {new Date().getFullYear()} BCIM Engineering Private Limited. All rights reserved.</span>
           <span className="flex items-center gap-1.5">
             <ShieldCheck size={13} className="text-primary" />

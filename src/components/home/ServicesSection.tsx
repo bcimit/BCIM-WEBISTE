@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import Image from 'next/image'
 import { useRef, useState } from 'react'
 import {
   motion,
@@ -13,6 +14,8 @@ import {
 import { ArrowUpRight, CheckCircle2, Building2, Home } from 'lucide-react'
 import { SERVICES } from '@/lib/constants'
 import { resolveImage } from '@/lib/utils'
+
+const MotionImage = motion.create(Image)
 
 const SERVICE_ICONS: Record<string, React.ElementType> = { Building2, Home }
 
@@ -103,11 +106,13 @@ function Card3D({
 
         {/* Image with 3D parallax */}
         <div className="relative h-64 lg:h-72 overflow-hidden rounded-t-3xl">
-          <motion.img
-            src={resolveImage(service.image, 900)}
+          <MotionImage
+            src={service.image.startsWith('/') ? service.image : resolveImage(service.image, 900)}
             alt={service.title}
+            fill
+            sizes="(min-width: 1024px) 50vw, 100vw"
             style={{ x: imgX, y: imgY, scale: 1.08 }}
-            className="w-full h-full object-cover"
+            className="object-cover"
           />
           {/* Dark base overlay */}
           <div className="absolute inset-0 bg-gradient-to-t from-dark/60 via-dark/10 to-transparent" />
@@ -160,7 +165,7 @@ function Card3D({
               href={service.href}
               className={`inline-flex items-center gap-2 text-sm font-bold ${accent.check} group/link`}
             >
-              Learn More
+              Learn More<span className="sr-only"> about {service.title}</span>
               <span className={`w-7 h-7 rounded-full ${accent.icon} flex items-center justify-center shadow group-hover/link:scale-110 transition-transform duration-200`}>
                 <ArrowUpRight size={13} className="text-white" />
               </span>

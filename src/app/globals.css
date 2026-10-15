@@ -234,4 +234,22 @@
       rgba(15, 23, 42, 0.30) 100%
     );
   }
+
+  /* Hero text entrance: pure CSS so it starts on first paint (no hydration wait) */
+  @keyframes hero-clip-in {
+    from { transform: translateY(110%); opacity: 0; }
+    to   { transform: translateY(0);    opacity: 1; }
+  }
+  @keyframes hero-fade-in {
+    from { transform: translateY(16px); opacity: 0; filter: blur(12px); }
+    to   { transform: translateY(0);    opacity: 1; filter: blur(0); }
+  }
+  .hero-clip-in { animation: hero-clip-in 0.65s cubic-bezier(0.22, 1, 0.36, 1) both; }
+  .hero-fade-in { animation: hero-fade-in 0.7s cubic-bezier(0.22, 1, 0.36, 1) both; }
+  .hero-word { transition: opacity 0.35s ease, transform 0.35s ease; }
+  .hero-word[data-out='true'] { opacity: 0; transform: translateY(-16px); }
+  @media (prefers-reduced-motion: reduce) {
+    .hero-clip-in, .hero-fade-in { animation: none; }
+    .hero-word { transition: none; }
+  }
 }
