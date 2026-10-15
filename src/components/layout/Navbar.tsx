@@ -223,7 +223,7 @@ export function Navbar() {
         {/* Right actions */}
         <div className="hidden xl:flex items-center gap-3 shrink-0">
           <a
-            href="https://bcimhr.bcim.in"
+            href="https://erp.bcim.in"
             target="_blank"
             rel="noreferrer"
             className={cn(
@@ -290,7 +290,7 @@ export function Navbar() {
               <div className="pt-4 flex flex-col gap-3">
                 <div className="flex gap-2">
                   <a
-                    href="https://bcimhr.bcim.in"
+                    href="https://erp.bcim.in"
                     target="_blank"
                     rel="noreferrer"
                     className="flex items-center gap-1.5 px-3 py-2 rounded-lg text-sm font-medium text-navy-700 bg-bg border border-navy-100"
