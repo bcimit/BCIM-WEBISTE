@@ -11,6 +11,7 @@ export const BOARD_OF_DIRECTORS: BoardMember[] = [
 ]
 
 export const SENIOR_MANAGEMENT: BoardMember[] = [
+  { name: 'Mr. Sairaj Pureti', role: 'Project Director' },
   {
     name: 'Mr. Bhabagahi Biswal',
     role: 'Project Head',
@@ -42,12 +43,6 @@ export const SENIOR_MANAGEMENT: BoardMember[] = [
     bio: 'Construction and rebar detailing specialist; led rebar detailing and estimation teams across UAE, US and India on projects including The Royal Atlantis and Expo 2020 Dubai.',
   },
   {
-    name: 'Mr. Vijay Ganesan',
-    role: 'Project Manager',
-    experience: '20+ years',
-    bio: 'Large-scale civil and structural project management with 10 years of international exposure, including roles at Eversendai, JMC Infra and IVRCL Infra.',
-  },
-  {
     name: 'Mr. Ananthan Nagesh',
     role: 'Project Manager',
     experience: '15+ years',
@@ -70,12 +65,6 @@ export const SENIOR_MANAGEMENT: BoardMember[] = [
     role: 'Environment, Health & Safety Manager',
     experience: '12+ years',
     bio: 'EHS management across high-rise buildings, thermal power, hydro, oil & gas and railway tunnel projects.',
-  },
-  {
-    name: 'Mr. Gopi C',
-    role: 'Plant & Machinery Manager',
-    experience: '12+ years',
-    bio: 'Construction plant and machinery management, including roles at Eversendai and the AbuHani Group (Oman).',
   },
   {
     name: 'Mr. Vijayan R',
