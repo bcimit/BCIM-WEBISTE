@@ -138,6 +138,18 @@ export const PROJECTS: Project[] = [
     featured: true,
   },
   {
+    id: 'sri-city-university',
+    name: 'Sri City International University',
+    client: 'Confidential',
+    location: 'Sri City, Tada, Andhra Pradesh',
+    status: 'Ongoing',
+    category: 'Residential',
+    scope: 'Residential construction works',
+    image: '1504307651254-35680f356dfd',
+    year: 'Ongoing',
+    featured: false,
+  },
+  {
     id: 'clspl-vizag',
     name: 'CLSPL Hostel (Ivy League House) – Visakhapatnam',
     client: 'Curated Living Solutions Pvt. Ltd.',
@@ -265,7 +277,7 @@ export const PROJECTS: Project[] = [
 export const STATS: Stat[] = [
   { label: 'Years Active', value: new Date().getFullYear() - 2018, suffix: '+', icon: 'CalendarDays' },
   { label: 'Completed Projects', value: 7, suffix: '', icon: 'CheckCircle2' },
-  { label: 'Ongoing Projects', value: 3, suffix: '', icon: 'HardHat' },
+  { label: 'Ongoing Projects', value: 4, suffix: '', icon: 'HardHat' },
   { label: 'Workforce', value: 750, suffix: '+', icon: 'Users' },
   { label: 'Avg. Staff Experience', value: 23, suffix: '+ yrs', icon: 'LayoutGrid' },
 ]

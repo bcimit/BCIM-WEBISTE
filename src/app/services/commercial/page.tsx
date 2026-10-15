@@ -11,7 +11,7 @@ const DATA = {
   color: 'from-primary to-blue-700',
   eyebrow: 'Commercial Construction',
   title: 'Grade-A Commercial Spaces Built to Last',
-  intro: 'BCIM Engineering delivers commercial construction projects across Karnataka, Telangana and Maharashtra — from corporate offices to large-scale IT campuses.',
+  intro: 'BCIM Engineering delivers commercial construction projects across Karnataka, Telangana and Andhra Pradesh — from corporate offices to large-scale IT campuses.',
   capabilities: [
     { title: 'Corporate Office Buildings', desc: 'G+4 to G+20 structures with open-plan floor plates, raised flooring, and smart building infrastructure.' },
     { title: 'IT Parks & Tech Campuses', desc: 'Multi-block campus developments with centralized amenities, redundant power, and 24×7 operational infrastructure.' },

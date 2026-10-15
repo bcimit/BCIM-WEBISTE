@@ -70,7 +70,7 @@ export function AboutContent() {
       </section>
 
       {/* Leadership */}
-      <section className="section-py bg-white">
+      <section id="leadership" className="section-py bg-white">
         <div className="container-xl">
           <motion.div {...fadeUp()} className="text-center mb-14">
             <p className="eyebrow mb-3">Leadership</p>

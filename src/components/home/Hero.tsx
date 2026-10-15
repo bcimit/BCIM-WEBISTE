@@ -141,7 +141,7 @@ export function Hero() {
               className="text-white/60 text-lg leading-relaxed max-w-xl mb-10"
             >
               ISO-certified construction contractor delivering premium commercial and residential
-              projects across Karnataka, Telangana and Maharashtra since {COMPANY.founded}.
+              projects across Karnataka, Telangana and Andhra Pradesh since {COMPANY.founded}.
             </motion.p>
 
             {/* Buttons */}

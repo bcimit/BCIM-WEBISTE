@@ -13,7 +13,7 @@ export default function GalleryPage() {
       <PageHero
         eyebrow="Project Gallery"
         title="Our Work in Pictures"
-        description="A visual showcase of BCIM Engineering's commercial and residential construction projects across Karnataka, Telangana and Maharashtra."
+        description="A visual showcase of BCIM Engineering's commercial and residential construction projects across Karnataka, Telangana and Andhra Pradesh."
       />
       <GalleryGrid />
     </>

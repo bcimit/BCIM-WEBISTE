@@ -13,7 +13,7 @@ export default function ProjectsPage() {
       <PageHero
         eyebrow="Our Portfolio"
         title="Projects We're Proud Of"
-        description="A growing portfolio of premium commercial offices, corporate campuses, and residential communities delivered across Karnataka, Telangana and Maharashtra."
+        description="A growing portfolio of premium commercial offices, corporate campuses, and residential communities delivered across Karnataka, Telangana and Andhra Pradesh."
       />
       <ProjectsGrid />
     </>

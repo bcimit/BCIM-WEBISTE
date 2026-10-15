@@ -8,6 +8,12 @@ const FOOTER_LINKS = [
     title: 'Company',
     links: [
       { label: 'About Us', href: '/about' },
+      { label: 'MD’s Message', href: '/managing-director-message' },
+      { label: 'Our Policies', href: '/policies' },
+      { label: 'Facilities', href: '/facilities' },
+      { label: 'Clients', href: '/clients' },
+      { label: 'Events', href: '/events' },
+      { label: 'Vendor Form', href: '/vendor-form' },
       { label: 'Our Projects', href: '/projects' },
       { label: 'Gallery', href: '/gallery' },
       { label: 'Careers', href: '/careers' },

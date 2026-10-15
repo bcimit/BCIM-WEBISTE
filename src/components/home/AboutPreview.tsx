@@ -11,7 +11,7 @@ const HIGHLIGHTS = [
   'Bureau Veritas-certified ISO 9001, 14001 & 45001',
   '750-strong workforce across active sites',
   '23+ years average staff experience',
-  'Projects across Karnataka, Telangana & Maharashtra',
+  'Projects across Karnataka, Telangana & Andhra Pradesh',
 ]
 
 export function AboutPreview() {

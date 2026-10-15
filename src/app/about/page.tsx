@@ -13,7 +13,7 @@ export default function AboutPage() {
       <PageHero
         eyebrow="About BCIM Engineering"
         title="Building South India's Future, One Project at a Time"
-        description="Founded in 2018, BCIM Engineering has grown into a trusted construction partner for developers, corporations, and homeowners across Karnataka, Telangana and Maharashtra."
+        description="Founded in 2018, BCIM Engineering has grown into a trusted construction partner for developers, corporations, and homeowners across Karnataka, Telangana and Andhra Pradesh."
         image="1497366216548-37526070297c"
         dark
       />

@@ -28,12 +28,12 @@ const DATA = {
     'ISO 9001:2015-certified quality management',
   ],
   stats: [
-    { value: '2', label: 'Residential Projects' },
+    { value: '3', label: 'Residential Projects' },
     { value: '3', label: 'States Active' },
     { value: '3', label: 'ISO Certifications' },
   ],
   image: '/images/projects/clspl-vizag.jpg',
-  projects: ['clspl-vizag', 'dqs-yelahanka'],
+  projects: ['clspl-vizag', 'dqs-yelahanka', 'sri-city-university'],
 }
 
 export default function ResidentialPage() {
