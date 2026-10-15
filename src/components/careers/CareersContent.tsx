@@ -1,11 +1,9 @@
 'use client'
 
-import { useState, useRef, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import {
   Briefcase, ArrowRight, CheckCircle2, Users, Building2, Trophy, Star,
-  Send, Phone, Mail, User, Filter, MapPin, Layers, Clock, Calendar,
-  Paperclip, Loader2, AlertCircle,
+  Filter, MapPin, Layers, Clock, Calendar,
 } from 'lucide-react'
 import { HIRING_DEPARTMENTS } from '@/lib/team'
 import type { ERPJob } from '@/lib/erp'
@@ -19,7 +17,7 @@ const PERKS = [
 ]
 
 const HIRING_STEPS = [
-  { step: '01', title: 'Apply', desc: 'Submit your details and resume using the form below. We review every application personally.' },
+  { step: '01', title: 'Apply', desc: 'Choose a role and submit your details and resume on our careers portal. We review every application personally.' },
   { step: '02', title: 'HR Screening', desc: 'A short call with our HR team to understand your background and answer your questions.' },
   { step: '03', title: 'Technical Interview', desc: 'A focused discussion with the department head about the role.' },
   { step: '04', title: 'Offer & Onboarding', desc: 'If it is a match, we move quickly to an offer and onboarding.' },
@@ -34,143 +32,7 @@ function fadeUp(delay = 0) {
   }
 }
 
-interface ApplyForm { name: string; email: string; phone: string; department: string; experience: string; note: string }
-const EMPTY_FORM: ApplyForm = { name: '', email: '', phone: '', department: '', experience: '', note: '' }
-
-function ApplicationForm({ prefilledDept = '', prefilledJobId = '' }: { prefilledDept?: string; prefilledJobId?: string }) {
-  const [form, setForm] = useState<ApplyForm>({ ...EMPTY_FORM, department: prefilledDept })
-  const [resume, setResume] = useState<File | null>(null)
-  const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
-  const [errorMsg, setErrorMsg] = useState('')
-  const fileRef = useRef<HTMLInputElement>(null)
-
-  async function handleSubmit(e: React.FormEvent) {
-    e.preventDefault()
-    setStatus('loading')
-    setErrorMsg('')
-
-    const fd = new FormData()
-    fd.append('name', form.name.trim())
-    fd.append('email', form.email.trim())
-    fd.append('phone', form.phone.trim())
-    fd.append('experience_years', form.experience || '0')
-    fd.append('department', form.department)
-    fd.append('note', form.note)
-    if (prefilledJobId) fd.append('job_id', prefilledJobId)
-    if (resume) fd.append('resume', resume)
-
-    try {
-      const res = await fetch('/api/careers/apply', { method: 'POST', body: fd })
-      const json = await res.json()
-      if (!res.ok) {
-        setErrorMsg(json.error ?? 'Submission failed. Please try again.')
-        setStatus('error')
-      } else {
-        setStatus('success')
-      }
-    } catch {
-      setErrorMsg('Network error. Please check your connection and try again.')
-      setStatus('error')
-    }
-  }
-
-  const field = 'w-full px-4 py-2.5 rounded-xl border border-navy-200 bg-white text-sm text-dark placeholder:text-navy-300 focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/10 transition-colors'
-
-  if (status === 'success') {
-    return (
-      <div className="text-center py-8">
-        <div className="w-14 h-14 rounded-2xl bg-emerald-50 flex items-center justify-center mx-auto mb-4">
-          <CheckCircle2 size={28} className="text-emerald-600" />
-        </div>
-        <h4 className="font-bold text-dark text-lg mb-2">Application Received!</h4>
-        <p className="text-navy-500 text-sm max-w-xs mx-auto">
-          Thank you, {form.name.split(' ')[0]}. Our HR team will review your application and get back to you shortly.
-        </p>
-      </div>
-    )
-  }
-
-  return (
-    <form onSubmit={handleSubmit} className="space-y-4">
-      <div className="grid sm:grid-cols-2 gap-4">
-        <div>
-          <label className="block text-xs font-semibold text-navy-600 mb-1.5"><User size={11} className="inline mr-1" />Full Name *</label>
-          <input required className={field} placeholder="Full name" value={form.name}
-            onChange={e => setForm(f => ({ ...f, name: e.target.value }))} />
-        </div>
-        <div>
-          <label className="block text-xs font-semibold text-navy-600 mb-1.5"><Mail size={11} className="inline mr-1" />Email *</label>
-          <input required type="email" className={field} placeholder="you@example.com" value={form.email}
-            onChange={e => setForm(f => ({ ...f, email: e.target.value }))} />
-        </div>
-        <div>
-          <label className="block text-xs font-semibold text-navy-600 mb-1.5"><Phone size={11} className="inline mr-1" />Phone *</label>
-          <input required type="tel" className={field} placeholder="+91 98765 43210" value={form.phone}
-            onChange={e => setForm(f => ({ ...f, phone: e.target.value }))} />
-        </div>
-        <div>
-          <label className="block text-xs font-semibold text-navy-600 mb-1.5"><Briefcase size={11} className="inline mr-1" />Role / Department</label>
-          <input className={field} placeholder="e.g. Site Engineer, QS" value={form.department}
-            onChange={e => setForm(f => ({ ...f, department: e.target.value }))} />
-        </div>
-      </div>
-      <div>
-        <label className="block text-xs font-semibold text-navy-600 mb-1.5">Years of Experience</label>
-        <input className={field} placeholder="e.g. 5" type="number" min="0" max="50" value={form.experience}
-          onChange={e => setForm(f => ({ ...f, experience: e.target.value }))} />
-      </div>
-      <div>
-        <label className="block text-xs font-semibold text-navy-600 mb-1.5">Brief Cover Note</label>
-        <textarea rows={3} className={field + ' resize-none'} placeholder="Tell us briefly why you'd be a strong fit..."
-          value={form.note} onChange={e => setForm(f => ({ ...f, note: e.target.value }))} />
-      </div>
-      <div>
-        <label className="block text-xs font-semibold text-navy-600 mb-1.5">
-          <Paperclip size={11} className="inline mr-1" />Resume (PDF or Word, max 5 MB)
-        </label>
-        <div
-          onClick={() => fileRef.current?.click()}
-          className="flex items-center gap-3 px-4 py-3 rounded-xl border border-navy-200 bg-white cursor-pointer hover:border-primary/40 transition-colors"
-        >
-          <Paperclip size={14} className={resume ? 'text-primary' : 'text-navy-300'} />
-          <span className={`text-sm flex-1 truncate ${resume ? 'text-dark' : 'text-navy-300'}`}>
-            {resume ? resume.name : 'Click to upload your resume…'}
-          </span>
-          {resume && (
-            <button type="button" onClick={e => { e.stopPropagation(); setResume(null); if (fileRef.current) fileRef.current.value = '' }}
-              className="text-xs text-navy-400 hover:text-red-500">Remove</button>
-          )}
-        </div>
-        <input ref={fileRef} type="file" accept=".pdf,.doc,.docx" className="hidden"
-          onChange={e => {
-            const file = e.target.files?.[0] ?? null
-            if (file && file.size > 5 * 1024 * 1024) {
-              setErrorMsg('Resume exceeds 5 MB. Please compress the file and re-upload.')
-              setStatus('error')
-              if (fileRef.current) fileRef.current.value = ''
-              return
-            }
-            setResume(file)
-            if (status === 'error') { setStatus('idle'); setErrorMsg('') }
-          }} />
-      </div>
-
-      {status === 'error' && (
-        <div className="flex items-start gap-2 px-4 py-3 rounded-xl bg-red-50 border border-red-200 text-red-700 text-sm">
-          <AlertCircle size={15} className="shrink-0 mt-0.5" />
-          <span>{errorMsg}</span>
-        </div>
-      )}
-
-      <button type="submit" disabled={status === 'loading'}
-        className="flex items-center gap-2 px-6 py-2.5 bg-primary text-white text-sm font-bold rounded-xl hover:bg-primary/90 transition-colors disabled:opacity-60 disabled:cursor-not-allowed">
-        {status === 'loading'
-          ? <><Loader2 size={14} className="animate-spin" /> Submitting…</>
-          : <><Send size={14} /> Send Application</>}
-      </button>
-    </form>
-  )
-}
+const ERP_CAREERS_URL = 'https://erp.bcim.in/careers'
 
 const JOB_TYPE_LABEL: Record<string, string> = {
   full_time: 'Full-time', part_time: 'Part-time', contract: 'Contract',
@@ -184,7 +46,7 @@ function expLabel(min?: number, max?: number) {
   return `Up to ${max} yrs`
 }
 
-function JobCard({ job, onApply }: { job: ERPJob; onApply: (title: string, id: string) => void }) {
+function JobCard({ job }: { job: ERPJob }) {
   const exp = expLabel(job.experience_min, job.experience_max)
   const closingDate = job.closing_date
     ? new Date(job.closing_date).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' })
@@ -228,33 +90,19 @@ function JobCard({ job, onApply }: { job: ERPJob; onApply: (title: string, id: s
       )}
 
       <div className="mt-auto">
-        <button
-          onClick={() => onApply(job.job_title, job.id)}
+        <a
+          href={`${ERP_CAREERS_URL}?job=${encodeURIComponent(job.id)}`}
+          target="_blank" rel="noopener noreferrer"
           className="flex items-center gap-1.5 text-sm font-bold text-primary hover:gap-2.5 transition-all"
         >
           Apply for this role <ArrowRight size={14} />
-        </button>
+        </a>
       </div>
     </motion.div>
   )
 }
 
 export function CareersContent({ jobs }: { jobs: ERPJob[] }) {
-  const [applyDept, setApplyDept] = useState('')
-  const [applyJobId, setApplyJobId] = useState('')
-  const [showForm, setShowForm] = useState(false)
-
-  useEffect(() => {
-    if (!applyDept) return
-    document.getElementById('apply-form')?.scrollIntoView({ behavior: 'smooth', block: 'center' })
-  }, [applyDept])
-
-  function handleApply(title: string, id = '') {
-    setApplyDept(title)
-    setApplyJobId(id)
-    setShowForm(true)
-  }
-
   return (
     <>
       {/* Why BCIM */}
@@ -300,7 +148,7 @@ export function CareersContent({ jobs }: { jobs: ERPJob[] }) {
           {jobs.length > 0 ? (
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
               {jobs.map(job => (
-                <JobCard key={job.id} job={job} onApply={handleApply} />
+                <JobCard key={job.id} job={job} />
               ))}
             </div>
           ) : (
@@ -312,12 +160,12 @@ export function CareersContent({ jobs }: { jobs: ERPJob[] }) {
               <p className="text-navy-500 text-sm max-w-md mx-auto mb-6">
                 We are always interested in talented construction professionals. Send us a speculative application — we keep strong profiles on file.
               </p>
-              <button
-                onClick={() => handleApply('General Application')}
+              <a
+                href={ERP_CAREERS_URL} target="_blank" rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 px-6 py-2.5 bg-primary text-white text-sm font-bold rounded-xl hover:bg-primary/90 transition-colors"
               >
                 Send Speculative Application <ArrowRight size={14} />
-              </button>
+              </a>
             </motion.div>
           )}
         </div>
@@ -374,10 +222,13 @@ export function CareersContent({ jobs }: { jobs: ERPJob[] }) {
                 <Briefcase size={16} className="text-primary" />
                 <h3 className="font-bold text-dark">Apply Now</h3>
               </div>
-              {(showForm || applyDept) && (
-                <p className="text-sm text-primary font-medium mb-4">Applying for: {applyDept || 'General Application'}</p>
-              )}
-              <ApplicationForm prefilledDept={applyDept} prefilledJobId={applyJobId} key={applyDept} />
+              <p className="text-navy-500 text-sm leading-relaxed mb-6">
+                Applications are handled on our HR portal. Pick a role above, or send a general application, and we will review it personally.
+              </p>
+              <a href={ERP_CAREERS_URL} target="_blank" rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-6 py-2.5 bg-primary text-white text-sm font-bold rounded-xl hover:bg-primary/90 transition-colors">
+                Apply on Careers Portal <ArrowRight size={14} />
+              </a>
             </motion.div>
           </div>
         </div>
