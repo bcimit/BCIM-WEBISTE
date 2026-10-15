@@ -65,8 +65,8 @@ export function AboutPreview() {
           </h2>
           <p className="text-navy-600 text-[1.0625rem] leading-relaxed">
             Established in {COMPANY.founded}, BCIM Engineering Private Limited provides total solutions
-            for civil construction across Commercial, Residential, Industrial, Infra and Mechanical
-            structures — monitored and executed by qualified, experienced engineers and supervisory staff.
+            for civil construction across Commercial and Residential
+            projects — monitored and executed by qualified, experienced engineers and supervisory staff.
           </p>
           <p className="text-navy-600 leading-relaxed">
             We focus exclusively on Commercial and Residential construction, allowing us to develop

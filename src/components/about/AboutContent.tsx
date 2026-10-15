@@ -7,7 +7,7 @@ import { BOARD_OF_DIRECTORS, SENIOR_MANAGEMENT } from '@/lib/team'
 import { CompanySuccess } from './CompanySuccess'
 
 const TIMELINE = [
-  { year: '2018', event: 'BCIM Engineering Private Limited established in Bengaluru for civil construction contract works across real estate and infrastructure.' },
+  { year: '2018', event: 'BCIM Engineering Private Limited established in Bengaluru for civil construction contract works for commercial and residential real estate.' },
   { year: 'Since', event: 'Delivered commercial projects for Divyasree Developers and LOCL across Hyderabad and Bengaluru.' },
   { year: 'Certified', event: 'ISO 9001:2015, ISO 14001:2015 and ISO 45001:2018 — integrated management systems across every site.' },
   { year: 'Now', event: 'Ongoing projects for Divyasree Developers and Curated Living Solutions across Hyderabad and Visakhapatnam.' },
