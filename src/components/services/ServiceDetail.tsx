@@ -81,8 +81,8 @@ export function ServiceDetail({ data }: { data: ServiceDetailData }) {
             <motion.div {...fadeUp(0.2)} className={`rounded-2xl bg-gradient-to-br ${data.color} p-6 text-white`}>
               <h4 className="font-bold text-lg mb-2">Ready to Start?</h4>
               <p className="text-white/80 text-sm mb-5">Get a detailed proposal for your project.</p>
-              <Link href="/request-quote" className="flex items-center gap-2 px-5 py-2.5 bg-white/15 hover:bg-white/25 rounded-lg font-semibold text-sm transition-colors">
-                Request a Quote <ArrowRight size={14} />
+              <Link href="/contact" className="flex items-center gap-2 px-5 py-2.5 bg-white/15 hover:bg-white/25 rounded-lg font-semibold text-sm transition-colors">
+                Contact Us <ArrowRight size={14} />
               </Link>
             </motion.div>
           </div>

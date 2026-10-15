@@ -38,7 +38,7 @@ export default function PrivacyPage() {
             <Section title="1. Information We Collect">
               <p>We collect information you provide directly to us, including:</p>
               <ul>
-                <li><strong>Contact form submissions</strong> — your name, email address, phone number, and message content when you fill out our Contact Us or Request a Quote forms.</li>
+                <li><strong>Contact form submissions</strong> — your name, email address, phone number, and message content when you fill out our Contact Us form.</li>
                 <li><strong>Job applications</strong> — your name, email, phone number, years of experience, and cover note when you apply for a position through our Careers page.</li>
                 <li><strong>Email correspondence</strong> — any information you include in emails sent to our published addresses.</li>
               </ul>

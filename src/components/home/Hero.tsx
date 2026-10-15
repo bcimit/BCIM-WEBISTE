@@ -158,8 +158,8 @@ export function Hero() {
                 </Link>
               </motion.div>
               <motion.div variants={clipReveal}>
-                <Link href="/request-quote" className="btn-outline">
-                  Request a Quote
+                <Link href="/contact" className="btn-outline">
+                  Contact Us
                 </Link>
               </motion.div>
             </motion.div>

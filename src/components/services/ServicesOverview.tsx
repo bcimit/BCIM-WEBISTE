@@ -111,8 +111,7 @@ export function ServicesOverview() {
             Tell us about your construction requirement and we&apos;ll prepare a detailed proposal promptly.
           </motion.p>
           <motion.div {...fadeUp(0.14)} className="flex flex-wrap justify-center gap-4">
-            <Link href="/request-quote" className="btn-primary">Request a Free Quote <ArrowRight size={16} /></Link>
-            <Link href="/contact" className="btn-outline-dark">Contact Us <ArrowRight size={16} /></Link>
+            <Link href="/contact" className="btn-primary">Contact Us <ArrowRight size={16} /></Link>
           </motion.div>
         </div>
       </section>

@@ -38,10 +38,10 @@ export function ContactCTA() {
 
           <div className="flex flex-wrap items-center justify-center gap-4 mt-10">
             <Link
-              href="/request-quote"
+              href="/contact"
               className="flex items-center gap-2 px-8 py-4 bg-white text-dark font-bold text-[0.9375rem] rounded-lg hover:bg-white/90 transition-all shadow-lg"
             >
-              Request a Free Quote <ArrowRight size={16} />
+              Contact Us <ArrowRight size={16} />
             </Link>
             <a
               href={COMPANY.phoneHref}

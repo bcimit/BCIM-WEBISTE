@@ -21,7 +21,6 @@ const SECTIONS = [
       { label: 'Blog', href: '/blog' },
       { label: 'Careers', href: '/careers' },
       { label: 'Contact Us', href: '/contact' },
-      { label: 'Request a Quote', href: '/request-quote' },
     ],
   },
   {

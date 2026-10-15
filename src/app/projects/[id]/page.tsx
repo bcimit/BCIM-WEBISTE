@@ -110,7 +110,7 @@ export default async function ProjectDetailPage({ params }: Props) {
                 </div>
               ))}
             </div>
-            <Link href="/request-quote" className="btn-primary justify-center">Request Similar Quote <ArrowRight size={15} /></Link>
+            <Link href="/contact" className="btn-primary justify-center">Enquire About a Similar Project <ArrowRight size={15} /></Link>
             <Link href="/projects" className="flex items-center justify-center gap-2 text-sm font-semibold text-navy-700 hover:text-primary transition-colors py-2">
               <ArrowLeft size={14} /> Back to Projects
             </Link>
