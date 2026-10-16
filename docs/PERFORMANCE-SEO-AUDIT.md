@@ -70,3 +70,22 @@ Already fixed earlier in this engagement (verified live): canonical URLs → `si
 * Deploy: push to `master`; Railway builds with Nixpacks (`next build`, `next start`). First requests to each image generate its AVIF/WebP once (slower), then are cached.
 * After deploy re-run: `npx lighthouse https://site.bcim.in/ --only-categories=performance,accessibility,best-practices,seo` for Home, Projects, a project page, Gallery.
 * Rollback: `git revert <commit>` and push, or redeploy the previous successful deployment in the Railway dashboard. No data or environment variable changes are involved.
+
+## Production re-test (live site, after deploy of 294a466)
+
+Same Lighthouse settings. Production scores vary noticeably run to run (the first run after a deploy also pays for generating each AVIF/WebP once), so two runs are shown where they differed.
+
+| Page | Perf (run 1 / run 2) | A11y | Best Pr. | SEO | LCP | TBT | Weight |
+|---|---|---|---|---|---|---|---|
+| Home | 52 / 74 | 100 | 100 | 100 | 6.1 / 6.0 s | 1,050 / 200 ms | 2,887 → 584 KiB |
+| Projects | 73 / 84 | 100 | 100 | 100 | 6.1 / 4.5 s | 40 / 50 ms | 2,725 → 765 KiB |
+| Project detail | 97 | 100 | 100 | 100 | 2.6 s | 20 ms | 1,745 → 464 KiB |
+| Commercial | 94 | 100 | 100 | 100 | 3.0 s | 10 ms | 1,920 → 531 KiB |
+| Gallery | 94 | 100 | 100 | 100 | 2.7 s | 20 ms | 4,726 → 772 KiB |
+| About | 85 / 97 | 98 | 100 | 100 | 3.3 / 2.5 s | 310 / 30 ms | 1,455 → 417 KiB |
+| Blog | 98 | 96 | 100 | 100 | 2.3 s | 20 ms | 487 → 462 KiB |
+| Contact | 89 / 99 | 100 | 100 | 100 | 3.5 / 2.0 s | 80 / 50 ms | 442 → 417 KiB |
+
+Result: Accessibility, Best Practices and SEO ≥ 96 everywhere; page weight down 5–80%. Performance ≥ 90 on 6 of 8 pages in at least one run; **Home (52–74) and Projects (73–84) remain below target.**
+
+Follow-up found in this re-test: on the home page the measured LCP element was the headline word that swaps every few seconds, so a longer swapped word re-set LCP (observed render delay ~3.9 s). The word swap now starts 7 s after load; locally the observed LCP element is the eyebrow line (render delay ~0.7 s). The simulated Lighthouse LCP score is unchanged (4.3 s), so the home page is still short of the 2.5 s target; the remaining cost is JavaScript (Framer Motion + hydration), see "Unresolved" item 3.

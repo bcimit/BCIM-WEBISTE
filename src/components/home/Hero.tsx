@@ -31,15 +31,20 @@ export function Hero() {
   /* Cycle the headline word with a short fade (CSS transition, no animation library) */
   useEffect(() => {
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+    // Start swapping only after the page has settled, so the first-paint headline is the
+    // one measured as Largest Contentful Paint (a later, longer word would move LCP).
     let swap: ReturnType<typeof setTimeout>
-    const interval = setInterval(() => {
-      setWordOut(true)
-      swap = setTimeout(() => {
-        setWordIdx((i) => (i + 1) % WORDS.length)
-        setWordOut(false)
-      }, 350)
-    }, 2800)
-    return () => { clearInterval(interval); clearTimeout(swap) }
+    let interval: ReturnType<typeof setInterval>
+    const start = setTimeout(() => {
+      interval = setInterval(() => {
+        setWordOut(true)
+        swap = setTimeout(() => {
+          setWordIdx((i) => (i + 1) % WORDS.length)
+          setWordOut(false)
+        }, 350)
+      }, 2800)
+    }, 7000)
+    return () => { clearTimeout(start); clearInterval(interval); clearTimeout(swap) }
   }, [])
 
   return (
